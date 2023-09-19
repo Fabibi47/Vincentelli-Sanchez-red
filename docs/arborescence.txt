@@ -1,0 +1,11 @@
+|- game
+  |- entities
+    |- player struct
+    |- monsters struct
+    |- menu
+      |- display
+      |- mainmenu
+      |- shop
+      |- blacksmith
+      |- battle
+main.go
