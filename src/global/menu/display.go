@@ -9,14 +9,11 @@ import (
 
 var scanner = bufio.NewScanner(os.Stdin)
 
-func DisplayMenu(menu []string) string {
+func DisplayMenu(menu []string) {
 	Clear()
 	for _, s := range menu {
 		Write(s)
 	}
-	scanner.Scan()
-	response := scanner.Text()
-	return response
 }
 
 func Write(s string) {

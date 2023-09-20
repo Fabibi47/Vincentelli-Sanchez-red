@@ -1,24 +1,40 @@
 package menu
 
-import "os"
+import (
+	"os"
+	"player"
+)
 
-func MainMenu() {
-	var mainMenu []string = []string{"1 - Character \n", "2 - Inventory \n", "3 - Shop \n", "4 - Leave"}
-	action := DisplayMenu(mainMenu)
-	switch action {
-	case "1":
-	case "2":
-	case "3":
-		Marchand()
-	case "4":
-		Write("Are you sure ? \n \n 1 - Yes, leave\n 2 - No, continue\n")
-		scanner.Scan()
-		response := scanner.Text()
-		switch response {
+func MainMenu(p player.Character) {
+	var mainMenu []string = []string{"1 - Character \n", "2 - Inventory \n", "3 - Shop \n", "4 - Blacksmith", "5 - Battle", "6 - Quests", "7 - Leave"}
+	DisplayMenu(mainMenu)
+	navigating := true
+	scanner.Scan()
+	for navigating {
+		action := scanner.Text()
+		switch action {
 		case "1":
-			os.Stdout.WriteString("Left")
+			navigating = false
 		case "2":
-			DisplayMenu(mainMenu)
+			navigating = false
+		case "3":
+			navigating = false
+			Marchand(p)
+		case "4":
+			navigating = false
+			Blacksmith(p)
+		case "7":
+			Write("Are you sure ? \n \n 1 - Yes, leave\n 2 - No, continue\n")
+			scanner.Scan()
+			response := scanner.Text()
+			switch response {
+			case "1":
+				os.Stdout.WriteString("Left")
+			case "2":
+				DisplayMenu(mainMenu)
+			}
+		default:
+			navigating = true
 		}
 	}
 }

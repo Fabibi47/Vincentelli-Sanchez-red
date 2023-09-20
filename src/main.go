@@ -2,89 +2,66 @@ package main
 
 import (
 	"fmt"
-	"os"
-	"time"
+	"menu"
+	"player"
 )
 
-type character struct {
-	name             string
-	weapon           string
-	speed            int
-	damage           int
-	level            int
-	max_health_point int
-	health_point     int
-	money            int
-	inventory        map[string]int
-}
-
-func Write(sentence string) {
-	for _, letter := range sentence {
-		os.Stdout.WriteString((string(letter)))
-		time.Sleep(1000)
-	}
-}
-
-var player character
+var Player player.Character
 
 func main() {
-	Write("Hey you, yeah you, you're new in the guild right ? What's your name ? \n\n")
+	menu.Write("Hey you, yeah you, you're new in the guild right ? What's your name ? \n\n")
 	name := ""
 	fmt.Scanln(&name)
-
-	player.name = name
-
-	Write("Ewh what a disgusting name, " + name + ", hum, do you want a beer to welcome you into the guild ?\n\n")
-	Write("1 - yes \n2 - no \n")
+	Player.Name = name
+	menu.Write("Ewh what a disgusting name, " + name + ", hum, do you want a beer to welcome you into the guild ?\n\n")
+	menu.Write("1 - yes \n2 - no \n")
 	answer1 := ""
 	fmt.Scanln(&answer1)
-
 	if answer1 == "1" {
-		Write("You start drinking but soon enough, you begin to stagger... the beer might have been poisonous... lol \n")
-		player.health_point = 50
+		menu.Write("You start drinking but soon enough, you begin to stagger... the beer might have been poisonous... lol \n")
+		Player.Health_point = 50
 	} else if answer1 == "2" {
-		Write("Wait You're supposed to take it... guess we don't have the choice... \n")
-		Write("You got bullied and lost consciousness")
-		player.health_point = 25
+		menu.Write("Wait You're supposed to take it... guess we don't have the choice... \n")
+		menu.Write("You got bullied and lost consciousness")
+		Player.Health_point = 25
 	} else if answer1 == "69" || answer1 == "420" {
-		Write("That's a really cool number, you still \"die\" but you're cool :D \n")
-		player.health_point = 100
+		menu.Write("That's a really cool number, you still \"die\" but you're cool :D \n")
+		Player.Health_point = 100
 	} else {
-		Write("I like how you're trying to avoid dying but that's part of the game so please... die \n")
-		player.health_point = 1
+		menu.Write("I like how you're trying to avoid dying but that's part of the game so please... die \n")
+		Player.Health_point = 1
 	}
-
-	Write("You wake up, somehow not dead, in a strange forest and find a \n\n")
-	Write("1 - GreatSword (slow but very powerful) \n2 - LongSword (fast and strong) \n3 - DualBlade (very quick but weak) \n")
+	menu.Write("You wake up, somehow not dead, in a strange forest and find a \n\n")
+	menu.Write("1 - GreatSword (slow but very powerful) \n2 - LongSword (fast and strong) \n3 - DualBlade (very quick but weak) \n")
 	answer2 := ""
 	fmt.Scanln(&answer2)
 	if answer2 == "1" {
-		player.weapon = "GreatSword"
-		player.speed = 5
-		player.damage = 25
+		Player.Weapon = "GreatSword"
+		Player.Speed = 5
+		Player.Damage = 25
 	} else if answer2 == "2" {
-		player.weapon = "LongSword"
-		player.speed = 15
-		player.damage = 15
+		Player.Weapon = "LongSword"
+		Player.Speed = 15
+		Player.Damage = 15
 	} else if answer2 == "3" {
-		player.weapon = "DualBlade"
-		player.speed = 30
-		player.damage = 5
+		Player.Weapon = "DualBlade"
+		Player.Speed = 30
+		Player.Damage = 5
 	} else {
-		player.weapon = "Stick"
-		player.speed = 5
-		player.damage = 5
+		Player.Weapon = "Stick"
+		Player.Speed = 5
+		Player.Damage = 5
 	}
-	if player.name == "Kheir" || player.name == "Alan" || player.name == "Cyril" || player.name == "Ethan" {
-		Write("You just equipped the most powerful weapon in the universe, you'll get through this adventure with ease")
-		player.weapon = "Sexcalibur"
-		player.speed = 100
-		player.damage = 100
+	if Player.Name == "Kheir" || Player.Name == "Alan" || Player.Name == "Cyril" || Player.Name == "Ethan" {
+		menu.Write("You just equipped the most powerful weapon in the universe, you'll get through this adventure with ease")
+		Player.Weapon = "Sexcalibur"
+		Player.Speed = 100
+		Player.Damage = 100
 	} else {
-		Write("Now that you have a " + player.weapon + " equipped, you decide to go on an adventure throughout the forest!")
+		menu.Write("Now that you have a " + Player.Weapon + " equipped, you decide to go on an adventure throughout the forest!")
 	}
-	player.level = 1
-	player.max_health_point = 100
-	player.money = 100
-	player.inventory = map[string]int{"First Aid": 5}
+	Player.Level = 1
+	Player.Max_health_point = 100
+	Player.Money = 100
+	Player.Inventory = map[string]int{"First Aid": 5}
 }

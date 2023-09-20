@@ -2,9 +2,10 @@ package menu
 
 import (
 	"fmt"
+	"player"
 )
 
-func Blacksmith() {
+func Blacksmith(p player.Character) {
 	Clear()
 	Write("Welcome! Do you want to forge items ? \n\n\n")
 	Write("1 - Weapon \n\n2 - Armor \n\n3 - Leave")
@@ -13,12 +14,12 @@ func Blacksmith() {
 	if selection == "1" {
 		Weapon()
 	} else if selection == "2" {
-		Armor()
+		Armor(p)
 	} else if selection == "3" {
-		MainMenu()
+		MainMenu(p)
 	} else {
 		Write("This is not a valid answer..")
-		Blacksmith()
+		Blacksmith(p)
 	}
 }
 
@@ -27,7 +28,7 @@ func Weapon() {
 
 }
 
-func Armor() {
+func Armor(p player.Character) {
 
 	Clear()
 	Write("Armors : \n\n")
@@ -59,23 +60,24 @@ func Armor() {
 		material = "Xeno'jiiva Gem"
 		cost = 750
 	case "0":
-		Blacksmith()
+		Blacksmith(p)
 	default:
 		Write("not an answer..")
-		Armor()
+		Armor(p)
 	}
-	Write("1 - Helms " + name + " : " + material + " x1 & zenny x" + string(cost) + "\n")
-	Write("2 - Chests " + name + " : " + material + " x1 & zenny x" + string(cost) + "\n")
-	Write("3 - Arms " + name + " : " + material + " x1 & zenny x" + string(cost) + "\n")
-	Write("4 - Waist " + name + " : " + material + " x1 & zenny x" + string(cost) + "\n")
-	Write("5 - Legs " + name + " : " + material + " x1 & zenny x" + string(cost) + "\n")
-	Write("6 - Back \n")
-	Write("0 - Leave")
+	armors := []string{"1 - Helms " + name + " : " + material + " x1 & zenny x" + string(cost) + "\n",
+		"2 - Chests " + name + " : " + material + " x1 & zenny x" + string(cost),
+		"3 - Arms " + name + " : " + material + " x1 & zenny x" + string(cost),
+		"4 - Waist " + name + " : " + material + " x1 & zenny x" + string(cost),
+		"5 - Legs " + name + " : " + material + " x1 & zenny x" + string(cost),
+		"6 - Back ",
+		"0 - Leave"}
+	DisplayMenu(armors)
 	fmt.Scanln(&choice)
 	switch choice {
 	case "0":
-		MainMenu()
+		MainMenu(p)
 	case "6":
-		Armor()
+		Armor(p)
 	}
 }
