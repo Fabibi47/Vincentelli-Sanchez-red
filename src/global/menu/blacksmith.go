@@ -3,12 +3,13 @@ package menu
 import (
 	"fmt"
 	"player"
+	"strconv"
 )
 
 func Blacksmith(p player.Character) {
 	Clear()
-	Write("Welcome! Do you want to forge items ? \n\n\n")
-	Write("1 - Weapon \n\n2 - Armor \n\n3 - Leave")
+	Write("Welcome! Do you want to forge something ? \n\n\n")
+	Write("1 - Weapon \n\n2 - Armor \n\n3 - Leave\n\n")
 	selection := ""
 	fmt.Scanln(&selection)
 	if selection == "1" {
@@ -32,7 +33,7 @@ func Armor(p player.Character) {
 
 	Clear()
 	Write("Armors : \n\n")
-	Write("1 - Great Jagras	\n	2 - Barroth	\n	3 - Rathalos	\n	4 - Nergigante	\n	5 - Xeno'jiiva \n0 - Back")
+	Write("	1 - Great Jagras	\n	2 - Barroth	\n	3 - Rathalos	\n	4 - Nergigante	\n	5 - Xeno'jiiva \n\n	0 - Back\n\n")
 	name := ""
 	material := ""
 	cost := 0
@@ -65,13 +66,13 @@ func Armor(p player.Character) {
 		Write("not an answer..")
 		Armor(p)
 	}
-	armors := []string{"1 - Helms " + name + " : " + material + " x1 & zenny x" + string(cost) + "\n",
-		"2 - Chests " + name + " : " + material + " x1 & zenny x" + string(cost),
-		"3 - Arms " + name + " : " + material + " x1 & zenny x" + string(cost),
-		"4 - Waist " + name + " : " + material + " x1 & zenny x" + string(cost),
-		"5 - Legs " + name + " : " + material + " x1 & zenny x" + string(cost),
-		"6 - Back ",
-		"0 - Leave"}
+	armors := []string{"1 - Helm " + name + " : " + material + " x1 & zenny x" + strconv.Itoa(cost),
+		"2 - Chest " + name + " : " + material + " x1 & zenny x" + strconv.Itoa(cost),
+		"3 - Arms " + name + " : " + material + " x1 & zenny x" + strconv.Itoa(cost),
+		"4 - Waist " + name + " : " + material + " x1 & zenny x" + strconv.Itoa(cost),
+		"5 - Legs " + name + " : " + material + " x1 & zenny x" + strconv.Itoa(cost) + "\n",
+		"6 - Back",
+		"0 - Leave\n"}
 	DisplayMenu(armors)
 	fmt.Scanln(&choice)
 	switch choice {

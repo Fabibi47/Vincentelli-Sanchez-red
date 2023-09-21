@@ -6,7 +6,7 @@ import (
 )
 
 func MainMenu(p player.Character) {
-	var mainMenu []string = []string{"1 - Character \n", "2 - Inventory \n", "3 - Shop \n", "4 - Blacksmith", "5 - Battle", "6 - Quests", "7 - Leave"}
+	var mainMenu []string = []string{"1 - Character \n", "2 - Inventory \n", "3 - Shop \n", "4 - Blacksmith \n", "5 - Battle \n", "6 - Quests \n", "7 - Leave \n\n"}
 	DisplayMenu(mainMenu)
 	navigating := true
 	scanner.Scan()
@@ -31,7 +31,7 @@ func MainMenu(p player.Character) {
 			case "1":
 				os.Stdout.WriteString("Left")
 			case "2":
-				DisplayMenu(mainMenu)
+				MainMenu(p)
 			}
 		default:
 			navigating = true
