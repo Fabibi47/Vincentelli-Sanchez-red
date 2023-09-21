@@ -7,7 +7,6 @@ type Character struct {
 	Health_point     int
 	Money            int
 	Inventory        map[string]int
-	Equipment        map[string]string
+	Armor            Armor
 	Weapon           Weapon
-	Defense          int
 }

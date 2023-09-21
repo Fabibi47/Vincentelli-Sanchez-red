@@ -14,9 +14,9 @@ func main() {
 	menu.Write("Hey you, yeah you, you're new in the guild right ? What's your name ? \n\n")
 	name := ""
 	fmt.Scanln(&name)
-	p1.Name = name
+	p1.Name = Capitalize(name)
 	menu.Clear()
-	menu.Write("Ewh what a disgusting name, " + name + ", hum, do you want a beer to welcome you into the guild ?\n\n")
+	menu.Write("Ewh what a disgusting name, " + p1.Name + ", hum, do you want a beer to welcome you into the guild ?\n\n")
 	menu.Write("1 - yes \n2 - no \n")
 	answer1 := ""
 	fmt.Scanln(&answer1)
@@ -42,35 +42,63 @@ func main() {
 	answer2 := ""
 	fmt.Scanln(&answer2)
 	if answer2 == "1" {
-		p1.Weapon.Name = "GreatSword"
+		p1.Weapon.Name = "Iron"
+		p1.Weapon.Type = "GreatSword"
 		p1.Weapon.Speed = 5
 		p1.Weapon.Damage = 25
 	} else if answer2 == "2" {
-		p1.Weapon.Name = "LongSword"
+		p1.Weapon.Name = "Iron"
+		p1.Weapon.Type = "LongSword"
 		p1.Weapon.Speed = 15
 		p1.Weapon.Damage = 15
 	} else if answer2 == "3" {
-		p1.Weapon.Name = "DualBlade"
+		p1.Weapon.Name = "Iron"
+		p1.Weapon.Type = "DualBlades"
 		p1.Weapon.Speed = 30
 		p1.Weapon.Damage = 5
 	} else {
-		p1.Weapon.Name = "Stick"
+		p1.Weapon.Name = "Wooden"
+		p1.Weapon.Type = "Stick"
 		p1.Weapon.Speed = 5
 		p1.Weapon.Damage = 5
 	}
 	menu.Clear()
-	if p1.Name == "Kheir" || p1.Name == "Alan" || p1.Name == "Cyril" || p1.Name == "Ethan" {
+	if p1.Name == "Kheir" || p1.Name == "Alan" || p1.Name == "Cyril" || p1.Name == "Ethan" || p1.Name == "Fhaaab" || p1.Name == "Plcuf" {
 		menu.Write("You just equipped the most powerful weapon in the universe, you'll get through this adventure with ease")
-		p1.Weapon.Name = "Sexcalibur"
+		p1.Weapon.Name = "Ultimate Sword"
+		p1.Weapon.Type = "Sexcalibur"
 		p1.Weapon.Speed = 100
 		p1.Weapon.Damage = 100
 	} else {
-		menu.Write("Now that you have a " + p1.Weapon.Name + " equipped, you decide to go on an adventure throughout the forest!")
+		menu.Write("Now that you have a " + p1.Weapon.Name + " " + p1.Weapon.Type + " equipped, you decide to go on an adventure throughout the forest!")
 	}
 	p1.Level = 1
 	p1.Max_health_point = 100
 	p1.Money = 100
 	p1.Inventory = map[string]int{"First Aid": 5}
+	p1.Armor.Helm = "Leather"
+	p1.Armor.Chest = "Leather"
+	p1.Armor.Arms = "Leather"
+	p1.Armor.Waist = "Leather"
+	p1.Armor.Legs = "Leather"
 	time.Sleep(3 * time.Second)
 	menu.MainMenu(p1)
+}
+
+func Capitalize(s string) string {
+	result := ""
+	for i := 0; i < len(s); i++ {
+		if s[i] >= 'a' && s[i] <= 'z' && i == 0 {
+			result += string(rune(s[i]) - 32)
+		} else if s[i] >= 'a' && s[i] <= 'z' && (s[i-1] < 'A' || s[i-1] > 'Z') && (s[i-1] < 'a' || s[i-1] > 'z') && (s[i-1] < '0' || s[i-1] > '9') {
+			result += string(rune(s[i]) - 32)
+		} else if s[i] >= 'A' && s[i] <= 'Z' && i == 0 {
+			result += string(rune(s[i]))
+		} else if s[i] >= 'A' && s[i] <= 'Z' && (s[i-1] >= 'A' && s[i-1] <= 'Z' || s[i-1] >= 'a' && s[i-1] <= 'z' || s[i-1] >= '0' && s[i-1] <= '9') {
+			result += string(rune(s[i]) + 32)
+		} else {
+			result += string(rune(s[i]))
+		}
+	}
+	return result
 }
