@@ -19,7 +19,7 @@ func DisplayMenu(menu []string) {
 func Write(s string) {
 	for _, c := range s {
 		os.Stdout.WriteString(string(c))
-		time.Sleep(1000)
+		time.Sleep(30 * time.Millisecond)
 	}
 	os.Stdout.WriteString("\n")
 }
