@@ -3,6 +3,7 @@ package menu
 import (
 	"fmt"
 	"player"
+	"strconv"
 )
 
 func Blacksmith(p player.Character) {
@@ -65,11 +66,11 @@ func Armor(p player.Character) {
 		Write("not an answer..")
 		Armor(p)
 	}
-	armors := []string{"1 - Helms " + name + " : " + material + " x1 & zenny x" + string(cost) + "\n",
-		"2 - Chests " + name + " : " + material + " x1 & zenny x" + string(cost),
-		"3 - Arms " + name + " : " + material + " x1 & zenny x" + string(cost),
-		"4 - Waist " + name + " : " + material + " x1 & zenny x" + string(cost),
-		"5 - Legs " + name + " : " + material + " x1 & zenny x" + string(cost),
+	armors := []string{"1 - Helms " + name + " : " + material + " x1 & zenny x" + strconv.Itoa(cost) + "\n",
+		"2 - Chests " + name + " : " + material + " x1 & zenny x" + strconv.Itoa(cost),
+		"3 - Arms " + name + " : " + material + " x1 & zenny x" + strconv.Itoa(cost),
+		"4 - Waist " + name + " : " + material + " x1 & zenny x" + strconv.Itoa(cost),
+		"5 - Legs " + name + " : " + material + " x1 & zenny x" + strconv.Itoa(cost),
 		"6 - Back ",
 		"0 - Leave"}
 	DisplayMenu(armors)

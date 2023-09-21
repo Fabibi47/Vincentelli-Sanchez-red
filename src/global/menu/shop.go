@@ -39,12 +39,9 @@ func Buy(p player.Character) {
 		"Poison":      100,
 	}
 	shopping := true
-	for article := range a {
-		buying = append(buying, article)
-	}
 	DisplayMenu(buying)
-	scanner.Scan()
 	for shopping {
+		scanner.Scan()
 		action := scanner.Text()
 		switch action {
 		case "0":
@@ -92,11 +89,12 @@ func Sell(p player.Character) {
 	}
 	selling := true
 	DisplayMenu(sell)
-	scanner.Scan()
 	for selling {
+		scanner.Scan()
 		action := scanner.Text()
 		switch action {
 		case "1":
+
 		}
 	}
 }

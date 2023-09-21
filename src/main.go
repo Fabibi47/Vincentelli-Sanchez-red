@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"menu"
 	"player"
+	"time"
 )
 
 var Player player.Character
@@ -36,32 +37,35 @@ func main() {
 	answer2 := ""
 	fmt.Scanln(&answer2)
 	if answer2 == "1" {
-		Player.Weapon = "GreatSword"
-		Player.Speed = 5
-		Player.Damage = 25
+		Player.Weapon.Name = "GreatSword"
+		Player.Weapon.Speed = 5
+		Player.Weapon.Damage = 25
 	} else if answer2 == "2" {
-		Player.Weapon = "LongSword"
-		Player.Speed = 15
-		Player.Damage = 15
+		Player.Weapon.Name = "LongSword"
+		Player.Weapon.Speed = 15
+		Player.Weapon.Damage = 15
 	} else if answer2 == "3" {
-		Player.Weapon = "DualBlade"
-		Player.Speed = 30
-		Player.Damage = 5
+		Player.Weapon.Name = "DualBlade"
+		Player.Weapon.Speed = 30
+		Player.Weapon.Damage = 5
 	} else {
-		Player.Weapon = "Stick"
-		Player.Speed = 5
-		Player.Damage = 5
+		Player.Weapon.Name = "Stick"
+		Player.Weapon.Speed = 5
+		Player.Weapon.Damage = 5
 	}
 	if Player.Name == "Kheir" || Player.Name == "Alan" || Player.Name == "Cyril" || Player.Name == "Ethan" {
 		menu.Write("You just equipped the most powerful weapon in the universe, you'll get through this adventure with ease")
-		Player.Weapon = "Sexcalibur"
-		Player.Speed = 100
-		Player.Damage = 100
+		Player.Weapon.Name = "Sexcalibur"
+		Player.Weapon.Speed = 100
+		Player.Weapon.Damage = 100
 	} else {
-		menu.Write("Now that you have a " + Player.Weapon + " equipped, you decide to go on an adventure throughout the forest!")
+		menu.Write("Now that you have a " + Player.Weapon.Name + " equipped, you decide to go on an adventure throughout the forest!")
 	}
 	Player.Level = 1
 	Player.Max_health_point = 100
 	Player.Money = 100
 	Player.Inventory = map[string]int{"First Aid": 5}
+
+	time.Sleep(500 * time.Millisecond)
+	menu.MainMenu(Player)
 }
