@@ -5,16 +5,20 @@ import (
 	"strconv"
 )
 
-func Stats(p player.Character) {
+func Stats(p *player.Character) {
 	stats := []string{
 		"Character stats : \n\n\n",
 		"	Name : " + p.Name + " | Lvl " + strconv.Itoa(p.Level) + " | Health : " + strconv.Itoa(p.Health_point) + "/" + strconv.Itoa(p.Max_health_point) + " | Zennys : " + strconv.Itoa(p.Money) + "\n\n",
-		"	Armor : 			Weapon : \n",
-		"	   Helm " + p.Armor.Helm + "			   " + p.Weapon.Name + " " + p.Weapon.Type,
-		"	   Chest " + p.Armor.Chest + "		      Damage : " + strconv.Itoa(p.Weapon.Damage),
-		"	   Arms " + p.Armor.Arms + "			      Speed : " + strconv.Itoa(p.Weapon.Speed),
+		"	Armor :\n",
+		"	   Helm " + p.Armor.Helm,
+		"	   Chest " + p.Armor.Chest,
+		"	   Arms " + p.Armor.Arms,
 		"	   Waist " + p.Armor.Waist,
 		"	   Legs " + p.Armor.Legs + "\n",
+		"	Weapon :\n",
+		"	   " + p.Weapon.Name + " " + p.Weapon.Type,
+		"	   Damage : " + strconv.Itoa(p.Weapon.Damage),
+		"	   Speed : " + strconv.Itoa(p.Weapon.Speed) + "\n",
 		"	0 - Back \n\n",
 	}
 	DisplayMenu(stats)

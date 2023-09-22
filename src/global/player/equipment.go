@@ -2,8 +2,8 @@ package player
 
 type Weapon struct {
 	Name   string
-	Speed  int
 	Damage int
+	Speed  int
 	Level  int
 	Type   string
 }
@@ -16,17 +16,14 @@ type Armor struct {
 	Legs  string
 }
 
-var armor Armor
-
-func HpUpdate(armor Armor, player Character) {
+func HpUpdate(armor *Armor, player *Character) int {
 	hpbonus := 0
 	hpbonus += HpDetection(armor.Helm)
 	hpbonus += HpDetection(armor.Chest)
 	hpbonus += HpDetection(armor.Arms)
 	hpbonus += HpDetection(armor.Waist)
 	hpbonus += HpDetection(armor.Legs)
-	player.Max_health_point += hpbonus
-	player.Health_point += hpbonus
+	return 100 + hpbonus
 }
 
 func HpDetection(part string) int {

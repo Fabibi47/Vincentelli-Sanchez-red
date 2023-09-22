@@ -6,7 +6,7 @@ import (
 	"strconv"
 )
 
-func MenuInventory(p player.Character) {
+func MenuInventory(p *player.Character) {
 	inventorySlice := []string{"INVENTORY \n\n\n"}
 	for object, quantity := range p.Inventory {
 		inventorySlice = append(inventorySlice, object+strconv.Itoa(quantity))

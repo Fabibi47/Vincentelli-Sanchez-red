@@ -73,16 +73,16 @@ func main() {
 		menu.Write("Now that you have a " + p1.Weapon.Name + " " + p1.Weapon.Type + " equipped, you decide to go on an adventure throughout the forest!")
 	}
 	p1.Level = 1
-	p1.Max_health_point = 100
-	p1.Money = 100
-	p1.Inventory = map[string]int{"First Aid": 5}
+	p1.Money = 10000
+	p1.Inventory = map[string]int{"First Aid": 5, "Great Jagras Scale": 2, "Xeno'jiiva Gem": 3}
 	p1.Armor.Helm = "Leather"
 	p1.Armor.Chest = "Leather"
 	p1.Armor.Arms = "Leather"
 	p1.Armor.Waist = "Leather"
 	p1.Armor.Legs = "Leather"
+	p1.Max_health_point = player.HpUpdate(&p1.Armor, &p1)
 	time.Sleep(3 * time.Second)
-	menu.MainMenu(p1)
+	menu.MainMenu(&p1)
 }
 
 func Capitalize(s string) string {

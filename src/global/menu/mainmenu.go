@@ -5,7 +5,7 @@ import (
 	"player"
 )
 
-func MainMenu(p player.Character) {
+func MainMenu(p *player.Character) {
 	var mainMenu []string = []string{"1 - Character \n", "2 - Inventory \n", "3 - Shop \n", "4 - Blacksmith \n", "5 - Battle \n", "6 - Quests \n", "7 - Leave \n\n"}
 	DisplayMenu(mainMenu)
 	navigating := true
