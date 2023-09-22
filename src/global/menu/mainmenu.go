@@ -16,36 +16,28 @@ func MainMenu(p player.Character) {
 		"7 - Leave \n\n"}
 	Clear()
 	DisplayMenu(mainMenu)
-	navigating := true
 	scanner.Scan()
-	for navigating {
-		action := scanner.Text()
-		switch action {
-		case "3":
-			navigating = false
-			Stats(p)
-		case "4":
-			navigating = false
-			MenuInventory(p)
-		case "5":
-			navigating = false
-			Marchand(p)
-		case "6":
-			navigating = false
-			Blacksmith(p)
-		case "7":
-			Write("Are you sure ? \n \n 1 - Yes, leave\n 2 - No, continue\n")
-			scanner.Scan()
-			response := scanner.Text()
-			switch response {
-			case "1":
-				os.Stdout.WriteString("Left")
-				navigating = false
-			case "2":
-				MainMenu(p)
-			}
-		default:
-			navigating = true
+	action := scanner.Text()
+	switch action {
+	case "3":
+		Stats(p)
+	case "4":
+		MenuInventory(p)
+	case "5":
+		Marchand(p)
+	case "6":
+		Blacksmith(p)
+	case "7":
+		Write("Are you sure ? \n \n 1 - Yes, leave\n 2 - No, continue\n")
+		scanner.Scan()
+		response := scanner.Text()
+		switch response {
+		case "1":
+			os.Stdout.WriteString("Left")
+		case "2":
+			MainMenu(p)
 		}
+	default:
+		MainMenu(p)
 	}
 }

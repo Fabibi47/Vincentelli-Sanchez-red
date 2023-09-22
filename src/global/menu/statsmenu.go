@@ -1,20 +1,21 @@
 package menu
 
 import (
-	"fmt"
 	"player"
 	"strconv"
 )
 
 func Stats(p player.Character) {
-	stats := []string{"Name :" + p.Name + "\n",
-		"Weapon :" + p.Weapon.Name + "\n",
-		"	Speed :" + strconv.Itoa(p.Weapon.Speed) + "\n",
-		"	Damage :" + strconv.Itoa(p.Weapon.Damage) + "\n",
-		"Level :" + strconv.Itoa(p.Level) + "\n",
-		"Health :" + fmt.Sprintf("%v", p.Health_point) + "/" + fmt.Sprintf("%v", p.Health_point) + "\n",
-		"Money :" + strconv.Itoa(p.Money) + " Zennys \n",
-		"\n0 - Back",
+	stats := []string{
+		"Character stats : \n\n\n",
+		"	Name : " + p.Name + " | Lvl " + strconv.Itoa(p.Level) + " | Health : " + strconv.Itoa(p.Health_point) + "/" + strconv.Itoa(p.Max_health_point) + " | Zennys : " + strconv.Itoa(p.Money) + "\n\n",
+		"	Armor : 			Weapon : \n",
+		"	   Helm " + p.Armor.Helm + "			   " + p.Weapon.Name + " " + p.Weapon.Type,
+		"	   Chest " + p.Armor.Chest + "		      Damage : " + strconv.Itoa(p.Weapon.Damage),
+		"	   Arms " + p.Armor.Arms + "			      Speed : " + strconv.Itoa(p.Weapon.Speed),
+		"	   Waist " + p.Armor.Waist,
+		"	   Legs " + p.Armor.Legs + "\n",
+		"	0 - Back \n\n",
 	}
 	Clear()
 	DisplayMenu(stats)

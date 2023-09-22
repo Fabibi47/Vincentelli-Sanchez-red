@@ -53,7 +53,7 @@ func DisplayObject(item player.Item, p player.Character) {
 	switch action {
 	case "1":
 		if item.Usable {
-			item.Use(p)
+			item.Use(&p)
 			Write(item.Name + " used succesfully !")
 			time.Sleep(3 * time.Second)
 			MenuInventory(p)
