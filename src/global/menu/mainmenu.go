@@ -5,27 +5,20 @@ import (
 	"player"
 )
 
-func MainMenu(p player.Character) {
-	var mainMenu []string = []string{
-		"1 - Battle \n",
-		"2 - Quests \n",
-		"3 - Character \n",
-		"4 - Inventory \n",
-		"5 - Shop \n",
-		"6 - Blacksmith \n",
-		"7 - Leave \n\n"}
+func MainMenu(p *player.Character) {
+	var mainMenu []string = []string{"1 - Character \n", "2 - Inventory \n", "3 - Shop \n", "4 - Blacksmith \n", "5 - Battle \n", "6 - Quests \n", "7 - Leave \n\n"}
 	Clear()
 	DisplayMenu(mainMenu)
 	scanner.Scan()
 	action := scanner.Text()
 	switch action {
-	case "3":
+	case "1":
 		Stats(p)
-	case "4":
-		MenuInventory(p)
-	case "5":
+	case "2":
+		MenuInventory(*p)
+	case "3":
 		Marchand(p)
-	case "6":
+	case "4":
 		Blacksmith(p)
 	case "7":
 		Write("Are you sure ? \n \n 1 - Yes, leave\n 2 - No, continue\n")

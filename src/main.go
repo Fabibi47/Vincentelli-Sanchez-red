@@ -81,8 +81,9 @@ func main() {
 	p1.Armor.Arms = "Leather"
 	p1.Armor.Waist = "Leather"
 	p1.Armor.Legs = "Leather"
+	p1.Max_health_point = player.HpUpdate(&p1.Armor, &p1)
 	time.Sleep(3 * time.Second)
-	menu.MainMenu(p1)
+	menu.MainMenu(&p1)
 }
 
 func Capitalize(s string) string {

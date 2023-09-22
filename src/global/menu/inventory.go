@@ -36,7 +36,7 @@ func MenuInventory(p player.Character) {
 			DisplayObject(items[item], p)
 		}
 	default:
-		MainMenu(p)
+		MainMenu(&p)
 	}
 }
 
