@@ -33,11 +33,7 @@ func Buy(p player.Character) {
 		"1 - Potion: 50 Zennys",
 		"2 - Mega Potion: 150 Zennys",
 		"3 - Poison: 100 Zennys"}
-	a := map[string]int{
-		"Potion":      50,
-		"Mega Potion": 150,
-		"Poison":      100,
-	}
+	Clear()
 	shopping := true
 	DisplayMenu(buying)
 	for shopping {
@@ -48,25 +44,25 @@ func Buy(p player.Character) {
 			shopping = false
 			Marchand(p)
 		case "1":
-			if p.Money >= a["Potion"] {
-				p.Inventory["Potion"]++
-				p.Money -= a["Potion"]
+			if p.Money >= player.Potion.Price {
+				p.Inventory[player.Potion]++
+				p.Money -= player.Potion.Price
 				Write("Thank you, Hunter ! \nAnything else?")
 			} else {
 				Write("Sorry, Hunter, but you don't have enough Zennys for this item.")
 			}
 		case "2":
-			if p.Money >= a["Mega Potion"] {
-				p.Inventory["Mega Potion"]++
-				p.Money -= a["Mega Potion"]
+			if p.Money >= player.Mega_Potion.Price {
+				p.Inventory[player.Mega_Potion]++
+				p.Money -= player.Mega_Potion.Price
 				Write("Thank you, Hunter ! \nAnything else?")
 			} else {
 				Write("Sorry, Hunter, but you don't have enough Zennys for this item.")
 			}
 		case "3":
-			if p.Money >= a["Poison"] {
-				p.Inventory["Poison"]++
-				p.Money -= a["Poison"]
+			if p.Money >= player.Poison.Price {
+				p.Inventory[player.Poison]++
+				p.Money -= player.Poison.Price
 				Write("Thank you, Hunter ! \nAnything else?")
 			} else {
 				Write("Sorry, Hunter, but you don't have enough Zennys for this item.")
@@ -80,14 +76,15 @@ func Buy(p player.Character) {
 func Sell(p player.Character) {
 	sell := []string{"What do you want to sell?",
 		"0 - I changed my mind (back)"}
-	articles := []string{}
+	articles := []player.Item{}
 	for a := range p.Inventory {
 		articles = append(articles, a)
 	}
 	for i := range articles {
-		sell = append(sell, fmt.Sprint(i+1)+"-"+articles[i])
+		sell = append(sell, fmt.Sprint(i+1)+"-"+articles[i].Name)
 	}
 	selling := true
+	Clear()
 	DisplayMenu(sell)
 	for selling {
 		scanner.Scan()

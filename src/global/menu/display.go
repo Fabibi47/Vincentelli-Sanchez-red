@@ -10,7 +10,6 @@ import (
 var scanner = bufio.NewScanner(os.Stdin)
 
 func DisplayMenu(menu []string) {
-	Clear()
 	for _, s := range menu {
 		Write(s)
 	}

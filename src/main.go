@@ -70,7 +70,7 @@ func main() {
 	p1.Level = 1
 	p1.Max_health_point = 100
 	p1.Money = 100
-	p1.Inventory = map[string]int{"First Aid": 5}
+	p1.Inventory = map[player.Item]int{player.First_Aid: 5}
 	time.Sleep(3 * time.Second)
 	menu.MainMenu(p1)
 }

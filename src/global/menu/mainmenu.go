@@ -6,23 +6,31 @@ import (
 )
 
 func MainMenu(p player.Character) {
-	var mainMenu []string = []string{"1 - Character \n", "2 - Inventory \n", "3 - Shop \n", "4 - Blacksmith \n", "5 - Battle \n", "6 - Quests \n", "7 - Leave \n\n"}
+	var mainMenu []string = []string{
+		"1 - Battle \n",
+		"2 - Quests \n",
+		"3 - Character \n",
+		"4 - Inventory \n",
+		"5 - Shop \n",
+		"6 - Blacksmith \n",
+		"7 - Leave \n\n"}
+	Clear()
 	DisplayMenu(mainMenu)
 	navigating := true
 	scanner.Scan()
 	for navigating {
 		action := scanner.Text()
 		switch action {
-		case "1":
-			navigating = false
-			Stats(p)
-		case "2":
-			navigating = false
-			MenuInventory(p)
 		case "3":
 			navigating = false
-			Marchand(p)
+			Stats(p)
 		case "4":
+			navigating = false
+			MenuInventory(p)
+		case "5":
+			navigating = false
+			Marchand(p)
+		case "6":
 			navigating = false
 			Blacksmith(p)
 		case "7":
@@ -32,6 +40,7 @@ func MainMenu(p player.Character) {
 			switch response {
 			case "1":
 				os.Stdout.WriteString("Left")
+				navigating = false
 			case "2":
 				MainMenu(p)
 			}

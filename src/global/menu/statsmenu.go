@@ -1,6 +1,7 @@
 package menu
 
 import (
+	"fmt"
 	"player"
 	"strconv"
 )
@@ -11,10 +12,11 @@ func Stats(p player.Character) {
 		"	Speed :" + strconv.Itoa(p.Weapon.Speed) + "\n",
 		"	Damage :" + strconv.Itoa(p.Weapon.Damage) + "\n",
 		"Level :" + strconv.Itoa(p.Level) + "\n",
-		"Health :" + strconv.Itoa(p.Health_point) + "/" + strconv.Itoa(p.Max_health_point) + "\n",
-		"Money :" + strconv.Itoa(p.Money) + "\n",
+		"Health :" + fmt.Sprintf("%v", p.Health_point) + "/" + fmt.Sprintf("%v", p.Health_point) + "\n",
+		"Money :" + strconv.Itoa(p.Money) + " Zennys \n",
 		"\n0 - Back",
 	}
+	Clear()
 	DisplayMenu(stats)
 	scanner.Scan()
 	action := scanner.Text()

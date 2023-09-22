@@ -73,6 +73,7 @@ func Armor(p player.Character) {
 		"5 - Legs " + name + " : " + material + " x1 & zenny x" + strconv.Itoa(cost) + "\n",
 		"6 - Back",
 		"0 - Leave\n"}
+	Clear()
 	DisplayMenu(armors)
 	fmt.Scanln(&choice)
 	switch choice {
