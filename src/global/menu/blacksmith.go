@@ -10,11 +10,11 @@ import (
 func Blacksmith(p *player.Character) {
 	Clear()
 	Write("Welcome! Do you want to forge something ? \n\n\n")
-	Write("1 - Weapon \n\n2 - Armor \n\n3 - Leave\n\n")
+	Write("1 - Weapon \n\n2 - Armor \n\n0 - Leave\n\n")
 	selection := ""
 	fmt.Scanln(&selection)
 	if selection == "1" {
-		Weapon()
+		Weapon(p)
 	} else if selection == "2" {
 		Armor(p)
 	} else if selection == "3" {
@@ -25,8 +25,34 @@ func Blacksmith(p *player.Character) {
 	}
 }
 
-func Weapon() {
+func Weapon(p *player.Character) {
 	Clear()
+	Write("Weapons : \n\n")
+	Write("	1 - Buy Weapons \n	2 - Upgrade Weapons \n\n0 - Back\n\n")
+	choice := ""
+	fmt.Scanln(&choice)
+	switch choice {
+	case "1":
+		Write("	1 - GreatSword \n	2 - LongSword \n	3 - DualBlades \n\n0 - Back\n\n")
+		tobuy := ""
+		fmt.Scanln(&choice)
+		switch choice {
+		case "1":
+			tobuy = "GreatSword"
+		case "2":
+			tobuy = "LongSword"
+		case "3":
+			tobuy = "DualBlades"
+		default:
+			Weapon(p)
+		}
+		BuyUpgrade(p, &p.Weapon.Name, &tobuy, player.Iron_ore)
+	case "2":
+		Upgrade(&p.Weapon)
+	}
+}
+
+func Upgrade(weapon *player.Weapon) {
 
 }
 
@@ -53,7 +79,7 @@ func Armor(p *player.Character) {
 		name = "Nergigante"
 		material = player.Nergigante_talon
 	case "5":
-		name = "Xeno' Jiiva"
+		name = "Xeno'jiiva"
 		material = player.Xeno_jiiva_gem
 	case "0":
 		Blacksmith(p)

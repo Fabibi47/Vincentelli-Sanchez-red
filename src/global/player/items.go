@@ -29,4 +29,5 @@ var Jagras_scale = Item{"Jagras Scale", "A scale belonging to a Great Jagras", 5
 var Barroth_scalp = Item{"Barroth Scalp", "The scalp of a Barroth", 100, false, "material", 0.0}
 var Rathalos_cortex = Item{"Rathalos Cortex", "The cortex of a Rathalos", 175, false, "material", 0.0}
 var Nergigante_talon = Item{"Nergigante's Talon", "A talon belonging to a Nergigante", 250, false, "material", 0.0}
-var Xeno_jiiva_gem = Item{"Xeno' Jiiva's Gem", "A gem belonging to a Xeno' Jiiva", 375, false, "material", 0.0}
+var Xeno_jiiva_gem = Item{"Xeno'Jiiva's Gem", "A gem belonging to a Xeno' Jiiva", 375, false, "material", 0.0}
+var Iron_ore = Item{"Iron Ore", "A simple ore that can be found everywhere", 50, false, "material", 0.0}
