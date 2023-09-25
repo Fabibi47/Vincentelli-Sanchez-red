@@ -42,25 +42,13 @@ func main() {
 	answer2 := ""
 	fmt.Scanln(&answer2)
 	if answer2 == "1" {
-		p1.Weapon.Name = "Iron"
-		p1.Weapon.Type = "GreatSword"
-		p1.Weapon.Speed = 5
-		p1.Weapon.Damage = 25
+		p1.Weapon = player.Weapon{"Iron", 25, 5, 1, "GreatSword", []player.Skill{player.Slash}}
 	} else if answer2 == "2" {
-		p1.Weapon.Name = "Iron"
-		p1.Weapon.Type = "LongSword"
-		p1.Weapon.Speed = 15
-		p1.Weapon.Damage = 15
+		p1.Weapon = player.Weapon{"Iron", 15, 15, 1, "LongSword", []player.Skill{player.Slash}}
 	} else if answer2 == "3" {
-		p1.Weapon.Name = "Iron"
-		p1.Weapon.Type = "DualBlades"
-		p1.Weapon.Speed = 30
-		p1.Weapon.Damage = 5
+		p1.Weapon = player.Weapon{"Iron", 30, 25, 1, "DualBlades", []player.Skill{player.Slash}}
 	} else {
-		p1.Weapon.Name = "Wooden"
-		p1.Weapon.Type = "Stick"
-		p1.Weapon.Speed = 5
-		p1.Weapon.Damage = 5
+		p1.Weapon = player.Weapon{"Wooden", 5, 5, 1, "Stick", []player.Skill{player.Bonk}}
 	}
 	menu.Clear()
 	if p1.Name == "Kheir" || p1.Name == "Alan" || p1.Name == "Cyril" || p1.Name == "Ethan" || p1.Name == "Fhaaab" || p1.Name == "Plcuf" {

@@ -11,6 +11,7 @@ func Marchand(p *player.Character) {
 		"0 - Nevermind, bye. (Leave)\n",
 		"1 - I want to buy something",
 		"2 - I want to sell something"}
+	Clear()
 	DisplayMenu(marchand)
 	navigating := true
 	scanner.Scan()

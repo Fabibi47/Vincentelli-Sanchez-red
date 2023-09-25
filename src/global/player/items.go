@@ -30,3 +30,4 @@ var Barroth_scalp = Item{"Barroth Scalp", "The scalp of a Barroth", 100, false, 
 var Rathalos_cortex = Item{"Rathalos Cortex", "The cortex of a Rathalos", 175, false, "material", 0.0}
 var Nergigante_talon = Item{"Nergigante's Talon", "A talon belonging to a Nergigante", 250, false, "material", 0.0}
 var Xeno_jiiva_gem = Item{"Xeno' Jiiva's Gem", "A gem belonging to a Xeno' Jiiva", 375, false, "material", 0.0}
+var Analtreon = Item{"Analtreon", "Allows you to craft the most powerful weapon and become de King of Hunters", 10000, false, "material", 0.0}

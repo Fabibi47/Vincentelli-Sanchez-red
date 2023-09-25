@@ -6,6 +6,7 @@ type Weapon struct {
 	Speed  int
 	Level  int
 	Type   string
+	Skills []Skill
 }
 
 type Armor struct {
