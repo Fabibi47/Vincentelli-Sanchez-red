@@ -58,6 +58,8 @@ func DisplayObject(item player.Item, p player.Character) {
 			time.Sleep(3 * time.Second)
 			MenuInventory(p)
 		} else {
+			Write("You can't use that!")
+			time.Sleep(3 * time.Second)
 			MenuInventory(p)
 		}
 	default:

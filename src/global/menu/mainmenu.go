@@ -20,6 +20,8 @@ func MainMenu(p *player.Character) {
 		Marchand(p)
 	case "4":
 		Blacksmith(p)
+	case "5":
+		ChoseZone(*p)
 	case "7":
 		Write("Are you sure ? \n \n 1 - Yes, leave\n 2 - No, continue\n")
 		scanner.Scan()
