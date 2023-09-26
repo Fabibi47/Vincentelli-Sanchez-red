@@ -8,13 +8,7 @@ type Skill struct {
 }
 
 func (s Skill) Use(p *Character) int {
-	damage := 0
-	if p.Stamina >= s.Cost {
-		p.Stamina -= s.Cost
-		damage = p.Weapon.Damage * int(s.Damage)
-	} else {
-		return -1
-	}
+	damage := p.Weapon.Damage * int(s.Damage)
 	return damage
 }
 
