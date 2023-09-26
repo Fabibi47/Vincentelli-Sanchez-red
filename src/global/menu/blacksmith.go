@@ -48,7 +48,7 @@ func Weapon(p *player.Character) {
 		default:
 			Weapon(p)
 		}
-		if Ihave(p, player.Iron_ore, 1) == true && p.Money >= 100 {
+		if Ihave(p, player.Iron_ore, 1) && p.Money >= 100 {
 			if tobuy == "GreatSword" {
 				p.Weapon.Damage = 25
 				p.Weapon.Speed = 5
@@ -83,7 +83,7 @@ func Weapon(p *player.Character) {
 
 func Upgrade(p *player.Character) {
 	Clear()
-	if p.Weapon.Level == 1 && Ihave(p, player.Iron_ore, 1) == true && p.Money >= 100 {
+	if p.Weapon.Level == 1 && Ihave(p, player.Iron_ore, 1) && p.Money >= 100 {
 		Write("Do you want to spend 1 Iron Ore and 100 zennys to upgrade your weapon ?\n\n	1 - Yes\n	2 - No")
 		choice := ""
 		fmt.Scanln(&choice)
@@ -98,7 +98,7 @@ func Upgrade(p *player.Character) {
 			Weapon(p)
 		}
 	}
-	if p.Weapon.Level == 2 && Ihave(p, player.Machalite_ore, 1) == true && p.Money >= 250 {
+	if p.Weapon.Level == 2 && Ihave(p, player.Machalite_ore, 1) && p.Money >= 250 {
 		Write("Do you want to spend 1 Machalite Ore and 250 zennys to upgrade your weapon ?\n\n	1 - Yes\n	2 - No")
 		choice := ""
 		fmt.Scanln(&choice)
@@ -113,7 +113,7 @@ func Upgrade(p *player.Character) {
 			Weapon(p)
 		}
 	}
-	if p.Weapon.Level == 3 && Ihave(p, player.Dragonite_ore, 1) == true && p.Money >= 500 {
+	if p.Weapon.Level == 3 && Ihave(p, player.Dragonite_ore, 1) && p.Money >= 500 {
 		Write("Do you want to spend 1 Dragonite Ore and 500 zennys to upgrade your weapon ?\n\n	1 - Yes\n	2 - No")
 		choice := ""
 		fmt.Scanln(&choice)
@@ -128,7 +128,7 @@ func Upgrade(p *player.Character) {
 			Weapon(p)
 		}
 	}
-	if p.Weapon.Level == 4 && Ihave(p, player.Carbalite_ore, 1) == true && p.Money >= 500 {
+	if p.Weapon.Level == 4 && Ihave(p, player.Carbalite_ore, 1) && p.Money >= 500 {
 		Write("Do you want to spend 1 Carbalite Ore and 500 zennys to upgrade your weapon ?\n\n	1 - Yes\n	2 - No")
 		choice := ""
 		fmt.Scanln(&choice)
@@ -143,7 +143,7 @@ func Upgrade(p *player.Character) {
 			Weapon(p)
 		}
 	}
-	if p.Weapon.Level == 5 && Ihave(p, player.Fucium_ore, 1) == true && p.Money >= 1000 {
+	if p.Weapon.Level == 5 && Ihave(p, player.Fucium_ore, 1) && p.Money >= 1000 {
 		Write("Do you want to spend 1 Fucium Ore and 1000 zennys to upgrade your weapon ?\n\n	1 - Yes\n	2 - No")
 		choice := ""
 		fmt.Scanln(&choice)
@@ -158,7 +158,7 @@ func Upgrade(p *player.Character) {
 			Weapon(p)
 		}
 	}
-	if p.Weapon.Level == 6 && Ihave(p, player.Eltalite_ore, 1) == true && p.Money >= 2500 {
+	if p.Weapon.Level == 6 && Ihave(p, player.Eltalite_ore, 1) && p.Money >= 2500 {
 		Write("Do you want to spend 1 Eltalite Ore and 2500 zennys to upgrade your weapon ?\n\n	1 - Yes\n	2 - No")
 		choice := ""
 		fmt.Scanln(&choice)
@@ -278,8 +278,5 @@ func BuyUpgrade(p *player.Character, part *string, equipment *string, material p
 }
 
 func Ihave(p *player.Character, material player.Item, amount int) bool {
-	if p.Inventory[material] >= amount {
-		return true
-	}
-	return false
+	return p.Inventory[material] >= amount
 }

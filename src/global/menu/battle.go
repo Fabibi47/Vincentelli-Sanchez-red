@@ -43,6 +43,7 @@ func GetMonster(zone string) monsters.Monster {
 func Hunt(player player.Character, monster monsters.Monster, zone string) {
 	playerHP := &player.Health_point
 	monsterHP := &monster.PV
+	saveMonsterHP := monster.PV
 	hunting := true
 	playerAction := []string{"1 - Attack\n", "2 - Objects\n", "3 - Run"}
 	turns := GetTurns(player, monster)
@@ -67,6 +68,7 @@ func Hunt(player player.Character, monster monsters.Monster, zone string) {
 					*monsterHP -= player.Weapon.Skills[0].Use(&player)
 					Write("Skill used !")
 					time.Sleep(time.Second)
+					monster.Affliction = player.Weapon.Skills[0].Effect
 					if *monsterHP <= 0 {
 						Victory(&player, monster, zone)
 						hunting = false
@@ -75,6 +77,7 @@ func Hunt(player player.Character, monster monsters.Monster, zone string) {
 					*monsterHP -= player.Weapon.Skills[1].Use(&player)
 					Write("Skill used !")
 					time.Sleep(time.Second)
+					monster.Affliction = player.Weapon.Skills[0].Effect
 					if *monsterHP <= 0 {
 						Victory(&player, monster, zone)
 						hunting = false
@@ -83,6 +86,7 @@ func Hunt(player player.Character, monster monsters.Monster, zone string) {
 					*monsterHP -= player.Weapon.Skills[2].Use(&player)
 					Write("Skill used !")
 					time.Sleep(time.Second)
+					monster.Affliction = player.Weapon.Skills[0].Effect
 					if *monsterHP <= 0 {
 						Victory(&player, monster, zone)
 						hunting = false
@@ -111,6 +115,11 @@ func Hunt(player player.Character, monster monsters.Monster, zone string) {
 			}
 		}
 		if i == len(turns)-1 {
+			if monster.Affliction == "Poison" {
+				*monsterHP -= int(float64(saveMonsterHP) * 0.05)
+				Write("Ennemy poisonned.")
+				time.Sleep(time.Second)
+			}
 			i = 0
 		}
 	}
