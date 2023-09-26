@@ -8,7 +8,7 @@ import (
 func Stats(p *player.Character) {
 	stats := []string{
 		"Character stats : \n\n\n",
-		"	Name : " + p.Name + " | Lvl " + strconv.Itoa(p.Level) + " | Health : " + strconv.Itoa(p.Health_point) + "/" + strconv.Itoa(p.Max_health_point) + " | Zennys : " + strconv.Itoa(p.Money) + "\n\n",
+		"	Name : " + p.Name + " | Lvl " + strconv.Itoa(p.Level) + " | Health : " + strconv.Itoa(p.Health_point) + "/" + strconv.Itoa(p.Max_health_point) + " | Stamina : " + strconv.Itoa(p.Stamina) + "/" + strconv.Itoa(p.Stamina_max) + " | Zennys : " + strconv.Itoa(p.Money) + "\n\n",
 		"	Armor :\n",
 		"	   Helm " + p.Armor.Helm,
 		"	   Chest " + p.Armor.Chest,
@@ -19,8 +19,12 @@ func Stats(p *player.Character) {
 		"	   " + p.Weapon.Name + " " + p.Weapon.Type,
 		"	   Damage : " + strconv.Itoa(p.Weapon.Damage),
 		"	   Speed : " + strconv.Itoa(p.Weapon.Speed) + "\n",
-		"	0 - Back \n\n",
+		"	   Skills :\n",
 	}
+	for _, s := range p.Weapon.Skills {
+		stats = append(stats, "	     "+s.Name+"\n")
+	}
+	stats = append(stats, "0 - Back")
 	Clear()
 	DisplayMenu(stats)
 	scanner.Scan()

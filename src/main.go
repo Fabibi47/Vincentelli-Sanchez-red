@@ -42,25 +42,13 @@ func main() {
 	answer2 := ""
 	fmt.Scanln(&answer2)
 	if answer2 == "1" {
-		p1.Weapon.Name = "Iron"
-		p1.Weapon.Type = "GreatSword"
-		p1.Weapon.Speed = 5
-		p1.Weapon.Damage = 25
+		p1.Weapon = player.Weapon{Name: "Iron", Damage: 25, Speed: 5, Level: 1, Type: "GreatSword", Skills: []player.Skill{player.Slash}}
 	} else if answer2 == "2" {
-		p1.Weapon.Name = "Iron"
-		p1.Weapon.Type = "LongSword"
-		p1.Weapon.Speed = 15
-		p1.Weapon.Damage = 15
+		p1.Weapon = player.Weapon{Name: "Iron", Damage: 15, Speed: 15, Level: 1, Type: "LongSword", Skills: []player.Skill{player.Slash}}
 	} else if answer2 == "3" {
-		p1.Weapon.Name = "Iron"
-		p1.Weapon.Type = "DualBlades"
-		p1.Weapon.Speed = 30
-		p1.Weapon.Damage = 5
+		p1.Weapon = player.Weapon{Name: "Iron", Damage: 10, Speed: 25, Level: 1, Type: "DualBlades", Skills: []player.Skill{player.Slash}}
 	} else {
-		p1.Weapon.Name = "Wooden"
-		p1.Weapon.Type = "Stick"
-		p1.Weapon.Speed = 5
-		p1.Weapon.Damage = 5
+		p1.Weapon = player.Weapon{Name: "Wooden", Damage: 5, Speed: 5, Level: 1, Type: "Stick", Skills: []player.Skill{player.Bonk}}
 	}
 	menu.Clear()
 	if p1.Name == "Kheir" || p1.Name == "Alan" || p1.Name == "Cyril" || p1.Name == "Ethan" || p1.Name == "Fhaaab" || p1.Name == "Plcuf" {
@@ -74,8 +62,8 @@ func main() {
 	}
 	p1.Level = 1
 	p1.Max_health_point = 100
-	p1.Money = 100
-	p1.Inventory = map[player.Item]int{player.First_Aid: 5}
+	p1.Money = 10000
+	p1.Inventory = map[player.Item]int{player.First_Aid: 5, player.Iron_ore: 5, player.Machalite_ore: 5, player.Dragonite_ore: 5, player.Carbalite_ore: 5, player.Fucium_ore: 5, player.Eltalite_ore: 5}
 	p1.Armor.Helm = "Leather"
 	p1.Armor.Chest = "Leather"
 	p1.Armor.Arms = "Leather"
