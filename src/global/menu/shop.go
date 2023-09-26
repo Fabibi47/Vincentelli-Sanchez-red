@@ -19,6 +19,7 @@ func Marchand(p *player.Character) {
 		answer := scanner.Text()
 		switch answer {
 		case "0":
+			navigating = false
 			MainMenu(p)
 		case "1":
 			Buy(p)
