@@ -108,10 +108,8 @@ func Hunt(player player.Character, monster monsters.Monster, zone string) {
 			Write(monster.Name + " attacked !")
 			time.Sleep(time.Second)
 			if *playerHP <= 0 {
-				Write("You lost...")
-				time.Sleep(time.Second * 3)
 				hunting = false
-				MainMenu(&player)
+				Wasted(&player)
 			}
 		}
 		if i == len(turns)-1 {

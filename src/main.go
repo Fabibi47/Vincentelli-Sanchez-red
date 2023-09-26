@@ -1,6 +1,7 @@
 package main
 
 import (
+	"colors"
 	"fmt"
 	"menu"
 	"player"
@@ -10,6 +11,7 @@ import (
 var p1 player.Character
 
 func main() {
+	colors.Init()
 	menu.Clear()
 	menu.Write("Hey you, yeah you, you're new in the guild right ? What's your name ? \n\n")
 	name := ""
