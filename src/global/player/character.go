@@ -12,4 +12,5 @@ type Character struct {
 	Stamina          int
 	Stamina_max      int
 	Stack            int
+	Affliction       string
 }
