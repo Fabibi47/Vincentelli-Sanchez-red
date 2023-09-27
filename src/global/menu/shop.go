@@ -4,7 +4,7 @@ import (
 	"player"
 )
 
-func Marchand(p *player.Character) {
+func Marchand(p player.Character) {
 	var marchand []string = []string{
 		"Welcome to my shop! How can I help you? \n \n",
 		"0 - Nevermind, bye. (Leave)\n",
@@ -26,7 +26,7 @@ func Marchand(p *player.Character) {
 	}
 }
 
-func Buy(p *player.Character) {
+func Buy(p player.Character) {
 	buying := []string{"Feel free to take a look !\n",
 		"0 - I changed my mind (back)\n",
 		"1 - Potion: 50 Zennys",
