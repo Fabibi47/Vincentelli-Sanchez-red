@@ -6,9 +6,7 @@ type Character struct {
 	Max_health_point int
 	Health_point     int
 	Money            int
-	Inventory        map[Item]int
+	Inventory        map[string]int
 	Armor            Armor
 	Weapon           Weapon
-	Stamina          int
-	Stamina_max      int
 }
