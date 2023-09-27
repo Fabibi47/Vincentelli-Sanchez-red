@@ -1,7 +1,6 @@
 package menu
 
 import (
-	"fmt"
 	"player"
 )
 
@@ -10,7 +9,7 @@ func Marchand(p *player.Character) {
 		"Welcome to my shop! How can I help you? \n \n",
 		"0 - Nevermind, bye. (Leave)\n",
 		"1 - I want to buy something",
-		"2 - I want to sell something"}
+	}
 	Clear()
 	DisplayMenu(marchand)
 	navigating := true
@@ -18,13 +17,11 @@ func Marchand(p *player.Character) {
 	for navigating {
 		answer := scanner.Text()
 		switch answer {
-		case "0":
+		default:
 			navigating = false
 			MainMenu(p)
 		case "1":
 			Buy(p)
-		case "2":
-			Sell(p)
 		}
 	}
 }
@@ -34,7 +31,9 @@ func Buy(p *player.Character) {
 		"0 - I changed my mind (back)\n",
 		"1 - Potion: 50 Zennys",
 		"2 - Mega Potion: 150 Zennys",
-		"3 - Poison: 100 Zennys"}
+		"3 - Poison: 100 Zennys",
+		"4 - Backpack: 250 Zennys",
+	}
 	Clear()
 	shopping := true
 	DisplayMenu(buying)
@@ -46,54 +45,46 @@ func Buy(p *player.Character) {
 			shopping = false
 			Marchand(p)
 		case "1":
-			if p.Money >= player.Potion.Price {
+			if p.Money >= player.Potion.Price && p.Inventory[player.Potion] < p.Stack {
 				p.Inventory[player.Potion]++
 				p.Money -= player.Potion.Price
-				Write("Thank you, Hunter ! \nAnything else?")
+				Write("Thank you," + "\033[31m" + " Hunter" + "\033[0m" + " ! \nAnything else?")
+			} else if p.Inventory[player.Potion] >= p.Stack {
+				Write("Your bag is full, you can't take anymore potions.")
 			} else {
-				Write("Sorry, Hunter, but you don't have enough Zennys for this item.")
+				Write("Sorry," + "\033[31m" + " Hunter" + "\033[0m" + ", but you don't have enough Zennys for this item.")
 			}
 		case "2":
-			if p.Money >= player.Mega_Potion.Price {
+			if p.Money >= player.Mega_Potion.Price && p.Inventory[player.Mega_Potion] < p.Stack {
 				p.Inventory[player.Mega_Potion]++
 				p.Money -= player.Mega_Potion.Price
-				Write("Thank you, Hunter ! \nAnything else?")
+				Write("Thank you," + "\033[31m" + " Hunter" + "\033[0m" + " ! \nAnything else?")
+			} else if p.Inventory[player.Mega_Potion] >= p.Stack {
+				Write("Your bag is full, you can't take anymore nega potions.")
 			} else {
-				Write("Sorry, Hunter, but you don't have enough Zennys for this item.")
+				Write("Sorry," + "\033[31m" + " Hunter" + "\033[0m" + ", but you don't have enough Zennys for this item.")
 			}
 		case "3":
-			if p.Money >= player.Poison.Price {
+			if p.Money >= player.Poison.Price && p.Inventory[player.Poison] < p.Stack {
 				p.Inventory[player.Poison]++
 				p.Money -= player.Poison.Price
 				Write("Thank you, Hunter ! \nAnything else?")
+			} else if p.Inventory[player.Poison] >= p.Stack {
+				Write("Your bag is full, you can't take anymore poisons.")
 			} else {
-				Write("Sorry, Hunter, but you don't have enough Zennys for this item.")
+				Write("Sorry," + "\033[31m" + " Hunter" + "\033[0m" + ", but you don't have enough Zennys for this item.")
+			}
+		case "4":
+			if p.Stack >= 10 {
+				Write("You already have this item.")
+			} else if p.Money >= 250 {
+				Write("Thank you," + "\033[31m" + " Hunter" + "\033[0m" + " ! \nAnything else?")
+				p.Stack = 10
+			} else {
+				Write("Sorry," + "\033[31m" + " Hunter" + "\033[0m" + ", but you don't have enough Zennys for this item.")
 			}
 		default:
 			Write("Sorry, I don't have this kind of thing.")
-		}
-	}
-}
-
-func Sell(p *player.Character) {
-	sell := []string{"What do you want to sell?",
-		"0 - I changed my mind (back)"}
-	articles := []player.Item{}
-	for a := range p.Inventory {
-		articles = append(articles, a)
-	}
-	for i := range articles {
-		sell = append(sell, fmt.Sprint(i+1)+"-"+articles[i].Name)
-	}
-	selling := true
-	Clear()
-	DisplayMenu(sell)
-	for selling {
-		scanner.Scan()
-		action := scanner.Text()
-		switch action {
-		case "1":
-
 		}
 	}
 }

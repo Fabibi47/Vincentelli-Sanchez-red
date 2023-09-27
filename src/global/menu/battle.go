@@ -22,7 +22,7 @@ func ChoseZone(player player.Character) {
 	case "2":
 		Hunt(player, GetMonster("Desert"), "Desert")
 	case "3":
-		Hunt(player, GetMonster("Swamp"), "Desert")
+		Hunt(player, GetMonster("Swamp"), "Swamp")
 	default:
 		MainMenu(&player)
 	}

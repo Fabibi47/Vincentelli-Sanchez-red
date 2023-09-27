@@ -9,7 +9,7 @@ type Skill struct {
 }
 
 func (s Skill) Use(p *Character) int {
-	damage := p.Weapon.Damage * int(s.Damage)
+	damage := int(float64(p.Weapon.Damage) * s.Damage)
 	return damage
 }
 

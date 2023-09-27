@@ -11,4 +11,5 @@ type Character struct {
 	Weapon           Weapon
 	Stamina          int
 	Stamina_max      int
+	Stack            int
 }

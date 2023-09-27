@@ -11,6 +11,7 @@ import (
 var p1 player.Character
 
 func main() {
+	p1.Stack = 5
 	colors.Init()
 	menu.Clear()
 	menu.Write("Hey you, yeah you, you're new in the guild right ? What's your name ? \n\n")
