@@ -6,6 +6,7 @@ type Weapon struct {
 	Damage int
 	Level  int
 	Type   string
+	Skills []Skill
 }
 
 type Armor struct {

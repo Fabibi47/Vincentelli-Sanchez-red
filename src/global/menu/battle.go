@@ -24,7 +24,7 @@ func ChoseZone(player player.Character) {
 	case "3":
 		Hunt(player, GetMonster("Swamp"), "Swamp")
 	default:
-		MainMenu(&player)
+		MainMenu(player)
 	}
 }
 
@@ -121,7 +121,7 @@ func Hunt(player player.Character, monster monsters.Monster, zone string) {
 			i = 0
 		}
 	}
-	MainMenu(&player)
+	MainMenu(player)
 }
 
 func GetTurns(player player.Character, monster monsters.Monster) []string {
@@ -187,6 +187,6 @@ func Victory(p *player.Character, m monsters.Monster, zone string) {
 	case "1":
 		Hunt(*p, GetMonster(zone), zone)
 	default:
-		MainMenu(p)
+		MainMenu(*p)
 	}
 }

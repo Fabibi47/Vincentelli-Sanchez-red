@@ -161,5 +161,5 @@ func Wasted(p *player.Character) {
 	anything := ""
 	fmt.Scanln(&anything)
 	p.Health_point = int(p.Max_health_point / 2)
-	MainMenu(p)
+	MainMenu(*p)
 }

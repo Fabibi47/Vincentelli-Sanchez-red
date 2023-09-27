@@ -11,7 +11,6 @@ var p1 player.Character
 
 func main() {
 	p1.Stack = 5
-	colors.Init()
 	menu.Clear()
 	menu.Write("Hey you, yeah you, you're new in the guild right ? What's your name ? \n\n")
 	name := ""
@@ -77,7 +76,7 @@ func main() {
 	p1.Level = 1
 	p1.Max_health_point = 100
 	p1.Money = 100
-	p1.Inventory = map[string]int{"First Aid": 5}
+	p1.Inventory = map[player.Item]int{player.First_Aid: 5}
 	p1.Armor.Helm = "Leather"
 	p1.Armor.Chest = "Leather"
 	p1.Armor.Arms = "Leather"
