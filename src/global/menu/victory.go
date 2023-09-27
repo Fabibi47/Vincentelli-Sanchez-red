@@ -28,7 +28,7 @@ func Victory(p *player.Character, m monsters.Monster, zone string) {
 	fmt.Scanln(&action)
 	switch action {
 	case "1":
-		Hunt(*p, GetMonster(zone), zone)
+		Hunt(p, GetMonster(zone), zone)
 	default:
 		MainMenu(p)
 	}

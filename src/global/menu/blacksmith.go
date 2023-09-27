@@ -4,16 +4,17 @@ import (
 	"fmt"
 	"player"
 	"strconv"
+	"time"
 )
 
-func Blacksmith(p player.Character) {
+func Blacksmith(p *player.Character) {
 	Clear()
 	Write("Welcome! Do you want to forge something ? \n\n\n")
 	Write("1 - Weapon \n\n2 - Armor \n\n3 - Leave\n\n")
 	selection := ""
 	fmt.Scanln(&selection)
 	if selection == "1" {
-		Weapon()
+		Weapon(p)
 	} else if selection == "2" {
 		Armor(p)
 	} else if selection == "3" {
@@ -24,7 +25,7 @@ func Blacksmith(p player.Character) {
 	}
 }
 
-func Weapon() {
+func Weapon(p *player.Character) {
 	Clear()
 	Write("Weapons : \n\n")
 	Write("	1 - Buy Weapons \n	2 - Upgrade Weapons \n\n0 - Back\n\n")
@@ -184,10 +185,11 @@ func BuyUpgradeWeapon(p *player.Character, part *string, equipment *string, mate
 	p.Weapon.Type = *equipment
 	Write("Thanks brother")
 	time.Sleep(3 * time.Second)
-	p.Max_health_point = player.HpUpdate(&p.Armor, p)
+	p.Max_health_point = player.HpUpdate(p.Armor, *p)
 	Blacksmith(p)
 }
 
+func Armor(p *player.Character) {
 	Clear()
 	Write("Armors : \n\n")
 	Write("	1 - Great Jagras	\n	2 - Barroth	\n	3 - Rathalos	\n	4 - Nergigante	\n	5 - Xeno'jiiva \n\n	0 - Back\n\n")
@@ -262,7 +264,7 @@ func BuyUpgrade(p *player.Character, part *string, equipment *string, material p
 			*part = *equipment
 			Write("Thanks brother")
 			time.Sleep(3 * time.Second)
-			p.Max_health_point = player.HpUpdate(&p.Armor, p)
+			p.Max_health_point = player.HpUpdate(p.Armor, *p)
 			Blacksmith(p)
 		}
 	}

@@ -11,12 +11,7 @@ import (
 var p1 player.Character
 
 func main() {
-<<<<<<< HEAD
-	p1.Stack = 5
-	p1.Affliction = "None"
-=======
 	colors.Init()
->>>>>>> f1860076939a29938ee7eebbced9925ae3096641
 	menu.Clear()
 	menu.Write1("Hey you, yeah you, you're new in the guild right ? What's your name ? \n\n")
 	name := ""
@@ -70,13 +65,14 @@ func main() {
 	p1.Level = 1
 	p1.Base_hp = 100
 	p1.Money = 10000
+	p1.Stack = 5
 	p1.Inventory = map[player.Item]int{player.First_Aid: 5, player.Iron_ore: 5, player.Machalite_ore: 5, player.Dragonite_ore: 5, player.Carbalite_ore: 5, player.Fucium_ore: 5, player.Eltalite_ore: 5}
 	p1.Armor.Helm = "Leather"
 	p1.Armor.Chest = "Leather"
 	p1.Armor.Arms = "Leather"
 	p1.Armor.Waist = "Leather"
 	p1.Armor.Legs = "Leather"
-	p1.Max_health_point = player.HpUpdate(&p1.Armor, &p1)
+	p1.Max_health_point = player.HpUpdate(p1.Armor, p1)
 	player.SkillDetection(&p1.Weapon)
 	time.Sleep(3 * time.Second)
 	menu.MainMenu(&p1)

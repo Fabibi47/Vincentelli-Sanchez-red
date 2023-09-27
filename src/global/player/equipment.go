@@ -19,14 +19,14 @@ type Armor struct {
 
 var armor Armor
 
-func HpUpdate(armor Armor, player Character) {
+func HpUpdate(armor Armor, player Character) int {
 	hpbonus := 0
 	hpbonus += HpDetection(armor.Helm)
 	hpbonus += HpDetection(armor.Chest)
 	hpbonus += HpDetection(armor.Arms)
 	hpbonus += HpDetection(armor.Waist)
 	hpbonus += HpDetection(armor.Legs)
-	player.Max_health_point = player.Base_hp hpbonus
+	return player.Base_hp + hpbonus
 }
 
 func HpDetection(part string) int {
@@ -43,4 +43,42 @@ func HpDetection(part string) int {
 	} else {
 		return 100
 	}
+}
+
+func SkillDetection(weapon *Weapon) {
+	skills := []Skill{}
+	if weapon.Type == "GreatSword" {
+		skills = append(skills, Slash)
+		if weapon.Level >= 3 {
+			skills = append(skills, Overhead_Slash)
+		}
+		if weapon.Level >= 5 {
+			skills = append(skills, Charged_Slash)
+		}
+	}
+	if weapon.Type == "LongSword" {
+		skills = append(skills, Slash)
+		if weapon.Level >= 3 {
+			skills = append(skills, Thrust)
+		}
+		if weapon.Level >= 5 {
+			skills = append(skills, Spirit_Slash)
+		}
+	}
+	if weapon.Type == "DualBlades" {
+		skills = append(skills, Slash)
+		if weapon.Level >= 3 {
+			skills = append(skills, Furry_Slash)
+		}
+		if weapon.Level >= 5 {
+			skills = append(skills, Demon_Slash)
+		}
+	}
+	if weapon.Type == "Stick" {
+		skills = append(skills, Bonk)
+	}
+	if weapon.Type == "Sexcalibur" {
+		skills = append(skills, Apocalypse)
+	}
+	weapon.Skills = skills
 }

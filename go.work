@@ -1,0 +1,9 @@
+go 1.21.0
+
+use (
+	./src/global
+	./src/global/menu
+	./src/global/player
+	./src/global/monsters
+	./src/global/colors
+)
