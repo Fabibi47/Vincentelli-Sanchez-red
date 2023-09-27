@@ -26,8 +26,7 @@ func HpUpdate(armor Armor, player Character) {
 	hpbonus += HpDetection(armor.Arms)
 	hpbonus += HpDetection(armor.Waist)
 	hpbonus += HpDetection(armor.Legs)
-	player.Max_health_point += hpbonus
-	player.Health_point += hpbonus
+	player.Max_health_point = player.Base_hp hpbonus
 }
 
 func HpDetection(part string) int {

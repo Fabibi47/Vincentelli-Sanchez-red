@@ -22,7 +22,7 @@ func ChoseZone(player player.Character) {
 	case "2":
 		Hunt(player, GetMonster("Desert"), "Desert")
 	case "3":
-		Hunt(player, GetMonster("Swamp"), "Swamp")
+		Hunt(player, GetMonster("Swamp"), "Desert")
 	default:
 		MainMenu(player)
 	}
@@ -43,7 +43,6 @@ func GetMonster(zone string) monsters.Monster {
 func Hunt(player player.Character, monster monsters.Monster, zone string) {
 	playerHP := &player.Health_point
 	monsterHP := &monster.PV
-	saveMonsterHP := monster.PV
 	hunting := true
 	playerAction := []string{"1 - Attack\n", "2 - Objects\n", "3 - Run"}
 	turns := GetTurns(player, monster)
@@ -170,23 +169,5 @@ func Items(p *player.Character) {
 		item, _ := strconv.Atoi(action)
 		item--
 		items[item].Use(p)
-	}
-}
-
-func Victory(p *player.Character, m monsters.Monster, zone string) {
-	Clear()
-	Write("Hunt Completed !\n\n\n\n")
-	p.Money += m.Drop
-	Write("You earned 10 Zennys !\n\n")
-	time.Sleep(3 * time.Second)
-	Write("1 - Next monster\n")
-	Write("0 - Back\n")
-	action := ""
-	fmt.Scanln(&action)
-	switch action {
-	case "1":
-		Hunt(*p, GetMonster(zone), zone)
-	default:
-		MainMenu(*p)
 	}
 }
