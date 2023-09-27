@@ -42,3 +42,41 @@ func HpDetection(part string) int {
 		return 100
 	}
 }
+
+func SkillDetection(weapon *Weapon) {
+	skills := []Skill{}
+	if weapon.Type == "GreatSword" {
+		skills = append(skills, Slash)
+		if weapon.Level >= 3 {
+			skills = append(skills, Overhead_Slash)
+		}
+		if weapon.Level >= 5 {
+			skills = append(skills, Charged_Slash)
+		}
+	}
+	if weapon.Type == "LongSword" {
+		skills = append(skills, Slash)
+		if weapon.Level >= 3 {
+			skills = append(skills, Thrust)
+		}
+		if weapon.Level >= 5 {
+			skills = append(skills, Spirit_Slash)
+		}
+	}
+	if weapon.Type == "DualBlades" {
+		skills = append(skills, Slash)
+		if weapon.Level >= 3 {
+			skills = append(skills, Furry_Slash)
+		}
+		if weapon.Level >= 5 {
+			skills = append(skills, Demon_Slash)
+		}
+	}
+	if weapon.Type == "Stick" {
+		skills = append(skills, Bonk)
+	}
+	if weapon.Type == "Sexcalibur" {
+		skills = append(skills, Apocalypse)
+	}
+	weapon.Skills = skills
+}

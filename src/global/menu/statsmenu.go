@@ -22,9 +22,9 @@ func Stats(p *player.Character) {
 		"	   Skills :\n",
 	}
 	for _, s := range p.Weapon.Skills {
-		stats = append(stats, "	     "+s.Name+"\n")
+		stats = append(stats, "	     "+s.Name)
 	}
-	stats = append(stats, "0 - Back")
+	stats = append(stats, "\n0 - Back\n")
 	Clear()
 	DisplayMenu(stats)
 	scanner.Scan()

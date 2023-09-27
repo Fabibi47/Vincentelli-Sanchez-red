@@ -84,7 +84,7 @@ func Weapon(p *player.Character) {
 func Upgrade(p *player.Character) {
 	Clear()
 	if p.Weapon.Level == 1 && Ihave(p, player.Iron_ore, 1) == true && p.Money >= 100 {
-		Write("Do you want to spend 1 Iron Ore and 100 zennys to upgrade your weapon ?\n\n	1 - Yes\n	2 - No")
+		Write("Do you want to spend 1 Iron Ore and 100 zennys to upgrade your weapon ?\n\n	1 - Yes\n	2 - No\n\n")
 		choice := ""
 		fmt.Scanln(&choice)
 		switch choice {
@@ -187,6 +187,7 @@ func BuyUpgradeWeapon(p *player.Character, part *string, equipment *string, mate
 	Write("Thanks brother")
 	time.Sleep(3 * time.Second)
 	p.Max_health_point = player.HpUpdate(&p.Armor, p)
+	player.SkillDetection(&p.Weapon)
 	Blacksmith(p)
 }
 
@@ -272,6 +273,7 @@ func BuyUpgrade(p *player.Character, part *string, equipment *string, material p
 			Write("Thanks brother")
 			time.Sleep(3 * time.Second)
 			p.Max_health_point = player.HpUpdate(&p.Armor, p)
+			player.SkillDetection(&p.Weapon)
 			Blacksmith(p)
 		}
 	}
