@@ -56,6 +56,7 @@ func GetMonster(zone string) monsters.Monster {
 func Hunt(player *player.Character, monster monsters.Monster, zone string) {
 	playerHP := &player.Health_point
 	monsterHP := monster.PV
+	stamina := player.Stamina_max
 	hunting := true
 	playerAction := []string{
 		"\n\n	1 - Attack",
@@ -66,12 +67,18 @@ func Hunt(player *player.Character, monster monsters.Monster, zone string) {
 	for hunting {
 		speedp += player.Weapon.Speed
 		speedm += monster.Speed
+		if stamina < 100 {
+			stamina += 10
+			if stamina > player.Stamina_max {
+				stamina = player.Stamina_max
+			}
+		}
 		if speedp >= 1000 {
 			speedp -= 1000
 			battleMenu := []string{
 				"Battle : \n\n\n",
-				"   " + monster.Name + "   " + strconv.Itoa(monsterHP) + "/" + strconv.Itoa(monster.PV) + "\n\n",
-				" ↳ " + player.Name + "   " + strconv.Itoa(*playerHP) + "/" + strconv.Itoa(player.Max_health_point)}
+				"   " + monster.Name + "   " + "\033[31m" + strconv.Itoa(monsterHP) + "/" + strconv.Itoa(monster.PV) + "\033[0m" + "\n\n",
+				" ↳ " + player.Name + "   " + "\033[31m" + strconv.Itoa(*playerHP) + "/" + strconv.Itoa(player.Max_health_point) + "\033[0m" + "   " + "\033[36m" + strconv.Itoa(stamina) + "/" + strconv.Itoa(player.Stamina_max) + "\033[0m"}
 			Clear()
 			DisplayMenu(battleMenu)
 			DisplayMenu(playerAction)
@@ -87,6 +94,7 @@ func Hunt(player *player.Character, monster monsters.Monster, zone string) {
 				switch attack {
 				case "1":
 					monsterHP -= player.Weapon.Skills[0].Use(player)
+					stamina -= player.Weapon.Skills[0].Cost
 					Write("Skill used !")
 					time.Sleep(time.Second)
 					if monsterHP <= 0 {
@@ -95,6 +103,7 @@ func Hunt(player *player.Character, monster monsters.Monster, zone string) {
 					}
 				case "2":
 					monsterHP -= player.Weapon.Skills[1].Use(player)
+					stamina -= player.Weapon.Skills[1].Cost
 					Write("Skill used !")
 					time.Sleep(time.Second)
 					if monsterHP <= 0 {
@@ -103,6 +112,7 @@ func Hunt(player *player.Character, monster monsters.Monster, zone string) {
 					}
 				case "3":
 					monsterHP -= player.Weapon.Skills[2].Use(player)
+					stamina -= player.Weapon.Skills[2].Cost
 					Write("Skill used !")
 					time.Sleep(time.Second)
 					if monsterHP <= 0 {
@@ -126,7 +136,7 @@ func Hunt(player *player.Character, monster monsters.Monster, zone string) {
 			battleMenu := []string{
 				"Battle : \n\n\n",
 				" ↱ " + monster.Name + "   " + strconv.Itoa(monsterHP) + "/" + strconv.Itoa(monster.PV) + "\n\n",
-				"   " + player.Name + "   " + strconv.Itoa(*playerHP) + "/" + strconv.Itoa(player.Max_health_point)}
+				"   " + player.Name + "   " + "\033[31m" + strconv.Itoa(*playerHP) + "/" + strconv.Itoa(player.Max_health_point) + "\033[0m" + "   " + "\033[36m" + strconv.Itoa(stamina) + "/" + strconv.Itoa(player.Stamina_max) + "\033[0m"}
 			Clear()
 			DisplayMenu(battleMenu)
 			fmt.Println("Monster's turn !")

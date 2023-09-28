@@ -35,5 +35,5 @@ var Iron_ore = Item{"Iron Ore", "A simple ore that can be found everywhere", 50,
 var Machalite_ore = Item{"Machalite Ore", "A simple ore that is strong and resistant", 100, false, "crafting", 0.0}
 var Dragonite_ore = Item{"Dragonite Ore", "An ore that might come from an ancient dragon", 250, false, "crafting", 0.0}
 var Carbalite_ore = Item{"Carbalite Ore", "This ore might look weak but it's in reality one of the toughest", 500, false, "crafting", 0.0}
-var Fucium_ore = Item{"Fucium Ore", "We're approaching peak ore with this one", 500, false, "crafting", 0.0}
-var Eltalite_ore = Item{"Eltalite Ore", "We did it, peak ore!", 1000, false, "crafting", 0.0}
+var Fucium_ore = Item{"Fucium Ore", "We're approaching peak ore with this one", 1000, false, "crafting", 0.0}
+var Eltalite_ore = Item{"Eltalite Ore", "We did it, peak ore!", 2000, false, "crafting", 0.0}
