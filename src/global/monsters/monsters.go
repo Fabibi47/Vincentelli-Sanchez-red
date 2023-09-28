@@ -1,6 +1,6 @@
 package monsters
 
-import "player"
+import "red/global/player"
 
 type Monster struct {
 	PV     int

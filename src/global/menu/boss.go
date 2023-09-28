@@ -3,8 +3,8 @@ package menu
 import (
 	"fmt"
 	"math/rand"
-	"monsters"
-	"player"
+	"red/global/monsters"
+	"red/global/player"
 	"strconv"
 	"time"
 )

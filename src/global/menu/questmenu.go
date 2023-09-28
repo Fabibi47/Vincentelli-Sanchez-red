@@ -2,8 +2,8 @@ package menu
 
 import (
 	"fmt"
-	"monsters"
-	"player"
+	"red/global/monsters"
+	"red/global/player"
 	"time"
 )
 
