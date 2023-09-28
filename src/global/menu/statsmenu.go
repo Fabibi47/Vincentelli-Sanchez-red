@@ -23,6 +23,7 @@ func Stats(p *player.Character) {
 		"" + "\033[0m" + "	   Damage : " + "\033[31m" + "" + strconv.Itoa(p.Weapon.Damage) + "\033[0m",
 		"" + "\033[0m" + "	   Speed : " + "\033[35m" + "" + strconv.Itoa(p.Weapon.Speed) + "" + "\033[0m" + "\n",
 		"" + "\033[0m" + "	   Skills :\n",
+		strconv.Itoa(p.Quest),
 	}
 	for _, s := range p.Weapon.Skills {
 		stats = append(stats, "	     "+s.Name+" - Damage : "+"\033[31m"+""+strconv.Itoa(int(s.Damage*float64(p.Weapon.Damage)))+""+"\033[0m"+" | Endurance :"+"\033[36m"+" "+strconv.Itoa(s.Cost))

@@ -2,6 +2,7 @@ package menu
 
 import (
 	"red/global/player"
+	"time"
 )
 
 func Marchand(p *player.Character) {
@@ -51,8 +52,9 @@ func Buy(p *player.Character) {
 	}
 	Clear()
 	shopping := true
-	DisplayMenu(buying)
 	for shopping {
+		Clear()
+		DisplayMenu(buying)
 		scanner.Scan()
 		action := scanner.Text()
 		switch action {
@@ -149,5 +151,6 @@ func Buy(p *player.Character) {
 		default:
 			Write("Sorry, I don't have this kind of thing.")
 		}
+		time.Sleep(time.Second)
 	}
 }

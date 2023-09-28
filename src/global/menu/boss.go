@@ -11,7 +11,7 @@ import (
 
 func BossBattle(p *player.Character, b *monsters.Boss) {
 	playerHP := &p.Health_point
-	bossHP := b.PV
+	monsterHP := b.PV
 	stamina := p.Stamina_max
 	hunting := true
 	playerAction := []string{
@@ -23,11 +23,17 @@ func BossBattle(p *player.Character, b *monsters.Boss) {
 	for hunting {
 		speedp += p.Weapon.Speed
 		speedm += b.Speed
+		if stamina < 100 {
+			stamina += 10
+			if stamina > p.Stamina_max {
+				stamina = p.Stamina_max
+			}
+		}
 		if speedp >= 1000 {
 			speedp -= 1000
 			battleMenu := []string{
 				"Battle : \n\n\n",
-				"   " + b.Name + "   " + strconv.Itoa(bossHP) + "/" + strconv.Itoa(b.PV) + "\n\n",
+				"   " + b.Name + "   " + "\033[31m" + strconv.Itoa(monsterHP) + "/" + strconv.Itoa(b.PV) + "\033[0m" + "\n\n",
 				" ↳ " + p.Name + "   " + "\033[31m" + strconv.Itoa(*playerHP) + "/" + strconv.Itoa(p.Max_health_point) + "\033[0m" + "   " + "\033[36m" + strconv.Itoa(stamina) + "/" + strconv.Itoa(p.Stamina_max) + "\033[0m"}
 			Clear()
 			DisplayMenu(battleMenu)
@@ -43,34 +49,58 @@ func BossBattle(p *player.Character, b *monsters.Boss) {
 				fmt.Scanln(&attack)
 				switch attack {
 				case "1":
-					bossHP -= p.Weapon.Skills[0].Use(p)
+					monsterHP -= p.Weapon.Skills[0].Use(p)
+					stamina -= p.Weapon.Skills[0].Cost
 					Write("Skill used !")
 					time.Sleep(time.Second)
-					if bossHP <= 0 {
-						BossVictory(p, *b)
+					if monsterHP <= 0 {
+						VictoryBoss(p, *b)
 						hunting = false
 					}
 				case "2":
-					bossHP -= p.Weapon.Skills[1].Use(p)
+					monsterHP -= p.Weapon.Skills[1].Use(p)
+					stamina -= p.Weapon.Skills[1].Cost
 					Write("Skill used !")
 					time.Sleep(time.Second)
-					if bossHP <= 0 {
-						BossVictory(p, *b)
+					if monsterHP <= 0 {
+						VictoryBoss(p, *b)
 						hunting = false
 					}
 				case "3":
-					bossHP -= p.Weapon.Skills[2].Use(p)
+					monsterHP -= p.Weapon.Skills[2].Use(p)
+					stamina -= p.Weapon.Skills[2].Cost
 					Write("Skill used !")
 					time.Sleep(time.Second)
-					if bossHP <= 0 {
-						BossVictory(p, *b)
+					if monsterHP <= 0 {
+						VictoryBoss(p, *b)
 						hunting = false
 					}
 				}
 			case "2":
 				Clear()
-				DisplayMenu(battleMenu)
-				Items(p)
+				inventory := []player.Item{}
+				for object := range p.Inventory {
+					if object.Usable {
+						inventory = append(inventory, object)
+					}
+				}
+				navigateMenu := []string{"Select your object\n\n"}
+				actionCount := 0
+				for i := 0; i < len(inventory); i++ {
+					if inventory[i].Usable {
+						actionCount++
+						navigateMenu = append(navigateMenu, strconv.Itoa(actionCount)+" - "+inventory[i].Name)
+					}
+				}
+				Clear()
+				DisplayMenu(navigateMenu)
+				Write("\n\n0 - Back")
+				navigate := ""
+				fmt.Scanln(&navigate)
+				response, _ := strconv.Atoi(navigate)
+				if response > 0 && response <= len(inventory) {
+					inventory[response-1].Use(p)
+				}
 			case "3":
 				Clear()
 				Write("You ran away... Loser.")
@@ -82,29 +112,13 @@ func BossBattle(p *player.Character, b *monsters.Boss) {
 			time.Sleep(1 * time.Second)
 			battleMenu := []string{
 				"Battle : \n\n\n",
-				" ↱ " + b.Name + "   " + strconv.Itoa(bossHP) + "/" + strconv.Itoa(b.PV) + "\n\n",
+				" ↱ " + b.Name + "   " + strconv.Itoa(monsterHP) + "/" + strconv.Itoa(b.PV) + "\n\n",
 				"   " + p.Name + "   " + "\033[31m" + strconv.Itoa(*playerHP) + "/" + strconv.Itoa(p.Max_health_point) + "\033[0m" + "   " + "\033[36m" + strconv.Itoa(stamina) + "/" + strconv.Itoa(p.Stamina_max) + "\033[0m"}
 			Clear()
 			DisplayMenu(battleMenu)
-			fmt.Println("Boss's turn !")
-			chance := rand.Int()
-			if chance%5 == 0 {
-				*playerHP -= b.Attacks[1].Use(*b)
-				Write(b.Name + " used " + b.Attacks[1].Name)
-				if b.Attacks[1].Effect != "None" && b.Attacks[1].Effect != "Armor" {
-					p.Affliction = b.Attacks[1].Effect
-				}
-			} else {
-				*playerHP -= b.Attacks[0].Use(*b)
-				Write(b.Name + " attacked !")
-				if b.Attacks[0].Effect != "None" && b.Attacks[0].Effect != "Armor" {
-					p.Affliction = b.Attacks[0].Effect
-				}
-			}
-			if p.Affliction == "Burn" {
-				Write("You're burning")
-				*playerHP -= int(float32(p.Max_health_point) * 0.2)
-			}
+			fmt.Println("Monster's turn !")
+			*playerHP -= b.Damage
+			Write(b.Name + " attacked !")
 			time.Sleep(time.Second)
 			if *playerHP <= 0 {
 				hunting = false
@@ -115,7 +129,7 @@ func BossBattle(p *player.Character, b *monsters.Boss) {
 	MainMenu(p)
 }
 
-func BossVictory(p *player.Character, b monsters.Boss) {
+func VictoryBoss(p *player.Character, b monsters.Boss) {
 	Clear()
 	frame1 := []string{"\033[33m" +
 		"┓┏       ┏┓       ┓      ┓",
@@ -139,15 +153,15 @@ func BossVictory(p *player.Character, b monsters.Boss) {
 	switch action {
 	default:
 		if b.Name == "Great Jagras" && p.Quest == 0 {
-			p.Quest = 1
+			p.Quest += 1
 		} else if b.Name == "Barroth" && p.Quest == 1 {
-			p.Quest = 2
+			p.Quest += 1
 		} else if b.Name == "Rathalos" && p.Quest == 2 {
-			p.Quest = 3
+			p.Quest += 1
 		} else if b.Name == "Nergigante" && p.Quest == 3 {
-			p.Quest = 4
+			p.Quest += 1
 		} else if b.Name == "Xeno'Jiiva" && p.Quest == 4 {
-			p.Quest = 5
+			p.Quest += 1
 		}
 		MainMenu(p)
 	}

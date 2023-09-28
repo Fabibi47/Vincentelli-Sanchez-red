@@ -71,6 +71,10 @@ func DisplayObject(o player.Item, p *player.Character) {
 	display = append(display, o.Name+"\n\n"+"   "+o.Descritpion+"\n")
 	Clear()
 	DisplayMenu(display)
+	if o.Usable {
+		Write("1 - Use")
+	}
+	Write("0 - Back")
 	action := ""
 	fmt.Scanln(&action)
 	switch action {

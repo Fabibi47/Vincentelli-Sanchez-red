@@ -143,7 +143,7 @@ func Hunt(p *player.Character, monster monsters.Monster, zone string) {
 				fmt.Scanln(&navigate)
 				response, _ := strconv.Atoi(navigate)
 				if response > 0 && response <= len(inventory) {
-					inventory[response].Use(p)
+					inventory[response-1].Use(p)
 				}
 			case "3":
 				Clear()
@@ -176,32 +176,8 @@ func Hunt(p *player.Character, monster monsters.Monster, zone string) {
 func GetSkills(p *player.Character) []string {
 	skillList := []string{}
 	for i, skill := range p.Weapon.Skills {
-		skillList = append(skillList, "\n\n	"+strconv.Itoa(i+1)+" - "+skill.Name+"\n")
+		skillList = append(skillList, "\n"+strconv.Itoa(i+1)+" - "+skill.Name)
 	}
-	skillList = append(skillList, "0 - Back")
+	skillList = append(skillList, "\n0 - Back")
 	return skillList
-}
-
-func Items(p *player.Character) {
-	inventory := []player.Item{}
-	for object := range p.Inventory {
-		if object.Usable {
-			inventory = append(inventory, object)
-		}
-	}
-	navigateMenu := []string{"Select your object"}
-	for i, o := range inventory {
-		navigateMenu = append(navigateMenu, strconv.Itoa(i+1)+" - "+o.Name)
-	}
-	Clear()
-	DisplayMenu(navigateMenu)
-	Write("\n\n0 - Back")
-	action := ""
-	fmt.Scanln(&action)
-	response, _ := strconv.Atoi(action)
-	if response <= len(inventory) && action > "0" {
-		DisplayObject(inventory[response-1], p)
-	} else {
-		MenuInventory(p)
-	}
 }

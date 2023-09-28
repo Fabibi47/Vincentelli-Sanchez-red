@@ -119,6 +119,7 @@ func Initialisation() {
 	p1.Armor.Legs = "Leather"
 	p1.Max_health_point = player.HpUpdate(p1.Armor, p1)
 	p1.Stamina_max = 100
+	p1.Quest = 0
 	player.SkillDetection(&p1.Weapon)
 	//time.Sleep(3 * time.Second)
 	menu.MainMenu(&p1)
