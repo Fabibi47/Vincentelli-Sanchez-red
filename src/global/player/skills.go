@@ -25,4 +25,4 @@ var Spirit_Slash = Skill{"Spirit Slash", 3.0, "flmm", 75, "none"}
 var Furry_Slash = Skill{"Furry Slash", 2.0, "flmm", 50, "none"}
 var Demon_Slash = Skill{"Demon Slash", 5.0, "flmm", 100, "none"}
 
-var Apocalypse = Skill{"Apocalypse", 10.0, "...", 0, "none"}
+var Apocalypse = Skill{"Apocalypse", 100.0, "...", 0, "none"}
