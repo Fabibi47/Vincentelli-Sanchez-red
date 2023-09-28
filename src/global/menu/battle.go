@@ -136,7 +136,7 @@ func Hunt(player *player.Character, monster monsters.Monster, zone string) {
 			battleMenu := []string{
 				"Battle : \n\n\n",
 				" ↱ " + monster.Name + "   " + strconv.Itoa(monsterHP) + "/" + strconv.Itoa(monster.PV) + "\n\n",
-				"   " + player.Name + "   " + strconv.Itoa(*playerHP) + "/" + strconv.Itoa(player.Max_health_point)}
+				"   " + player.Name + "   " + "\033[31m" + strconv.Itoa(*playerHP) + "/" + strconv.Itoa(player.Max_health_point) + "\033[0m" + "   " + "\033[36m" + strconv.Itoa(stamina) + "/" + strconv.Itoa(player.Stamina_max) + "\033[0m"}
 			Clear()
 			DisplayMenu(battleMenu)
 			fmt.Println("Monster's turn !")

@@ -56,6 +56,7 @@ func MainMenu(p *player.Character) {
 			case "1":
 				navigating = false
 				os.Stdout.WriteString("Left")
+				os.Exit(0)
 			case "2":
 				MainMenu(p)
 			}
