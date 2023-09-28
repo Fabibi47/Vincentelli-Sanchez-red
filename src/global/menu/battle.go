@@ -122,7 +122,7 @@ func Hunt(player *player.Character, monster monsters.Monster, zone string) {
 				}
 			case "2":
 				Clear()
-				DisplayMenu(battleMenu)
+				Navigate(player)
 				Items(player)
 			case "3":
 				Clear()
@@ -162,23 +162,25 @@ func GetSkills(p *player.Character) []string {
 }
 
 func Items(p *player.Character) {
-	items := []player.Item{}
-	for item := range p.Inventory {
-		if item.Usable {
-			items = append(items, item)
+	inventory := []player.Item{}
+	for object := range p.Inventory {
+		if object.Usable {
+			inventory = append(inventory, object)
 		}
 	}
-	selectionSlice := []string{}
-	for j, i := range items {
-		selectionSlice = append(selectionSlice, strconv.Itoa(j+1)+" - "+i.Name)
+	navigateMenu := []string{}
+	for i, o := range inventory {
+		navigateMenu = append(navigateMenu, strconv.Itoa(i+1)+" - "+o.Name)
 	}
-	DisplayMenu(selectionSlice)
-	Write("0 - Back")
+	Clear()
+	DisplayMenu(navigateMenu)
+	Write("\n\n0 - Back")
 	action := ""
 	fmt.Scanln(&action)
-	if action > strconv.Itoa(0) && action <= strconv.Itoa(len(selectionSlice)) {
-		item, _ := strconv.Atoi(action)
-		item--
-		items[item].Use(p)
+	response, _ := strconv.Atoi(action)
+	if response <= len(inventory) && action > "0" {
+		DisplayObject(inventory[response-1], p)
+	} else {
+		MenuInventory(p)
 	}
 }

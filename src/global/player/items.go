@@ -17,6 +17,9 @@ func (i Item) Use(p *Character) {
 				p.Health_point = p.Max_health_point
 			}
 			p.Inventory[i]--
+			if p.Inventory[i] <= 0 {
+				delete(p.Inventory, i)
+			}
 		}
 	}
 }
