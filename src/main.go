@@ -2,14 +2,59 @@ package main
 
 import (
 	"fmt"
+	"os"
 	"red/global/colors"
 	"red/global/menu"
 	"red/global/player"
+	"time"
 )
 
 var p1 player.Character
 
 func main() {
+	menu.Clear()
+	game := []string{
+		"\033[91m" + "   ▄████████    ▄████████ ████████▄     " + "\033[31m" + "     ▄█    █▄    ███    █▄  ███▄▄▄▄       ███        ▄████████    ▄████████ ",
+		"\033[91m" + "  ███    ███   ███    ███ ███   ▀███    " + "\033[31m" + "    ███    ███   ███    ███ ███▀▀▀██▄ ▀█████████▄   ███    ███   ███    ███ ",
+		"\033[91m" + "  ███    ███   ███    █▀  ███    ███    " + "\033[31m" + "    ███    ███   ███    ███ ███   ███    ▀███▀▀██   ███    █▀    ███    ███ ",
+		"\033[91m" + " ▄███▄▄▄▄██▀  ▄███▄▄▄     ███    ███    " + "\033[31m" + "   ▄███▄▄▄▄███▄▄ ███    ███ ███   ███     ███   ▀  ▄███▄▄▄      ▄███▄▄▄▄██▀ ",
+		"\033[91m" + "▀▀███▀▀▀▀▀   ▀▀███▀▀▀     ███    ███    " + "\033[31m" + "  ▀▀███▀▀▀▀███▀  ███    ███ ███   ███     ███     ▀▀███▀▀▀     ▀▀███▀▀▀▀▀   ",
+		"\033[91m" + "▀███████████   ███    █▄  ███    ███    " + "\033[31m" + "    ███    ███   ███    ███ ███   ███     ███       ███    █▄  ▀███████████ ",
+		"\033[91m" + "  ███    ███   ███    ███ ███   ▄███    " + "\033[31m" + "    ███    ███   ███    ███ ███   ███     ███       ███    ███   ███    ███ ",
+		"\033[91m" + "  ███    ███   ██████████ ████████▀     " + "\033[31m" + "    ███    █▀    ████████▀   ▀█   █▀     ▄████▀     ██████████   ███    ███ ",
+		"\033[91m" + "  ███    ███                            " + "\033[31m" + "                                                                 ███    ███ " + "\033[0m" + "\n\n\n\n",
+		"				┌┐        ┌─┐┌┬┐┌─┐┬─┐┌┬┐                        ",
+		"				 │   ───  └─┐ │ ├─┤├┬┘ │                         ",
+		"				─┴─       └─┘ ┴ ┴ ┴┴└─ ┴                         ",
+		"				┌─┐       ┬ ┬┬ ┬┌─┐  ┌─┐┬─┐┌─┐  ┌┬┐┬ ┬┌─┐┬ ┬  ┌─┐",
+		"				┌─┘  ───  │││├─┤│ │  ├─┤├┬┘├┤    │ ├─┤├┤ └┬┘   ┌┘",
+		"				└─┘       └┴┘┴ ┴└─┘  ┴ ┴┴└─└─┘   ┴ ┴ ┴└─┘ ┴    o ",
+		"				┌─┐       ┬  ┌─┐┌─┐┬  ┬┌─┐                       ",
+		"				│ │  ───  │  ├┤ ├─┤└┐┌┘├┤                        ",
+		"				└─┘       ┴─┘└─┘┴ ┴ └┘ └─┘                       \n\n\n",
+	}
+	menu.DisplayMenu(game)
+	choice := ""
+	fmt.Scanln(&choice)
+	switch choice {
+	case "1":
+		Initialisation()
+	case "2":
+		Whoarethey()
+	case "3":
+		os.Exit(0)
+	}
+}
+
+func Whoarethey() {
+	menu.Clear()
+	menu.Write("artistes cachés sont :\n	- Abba\n	- Steven Spielberg\n	- Queen\n\nPress enter\n\n")
+	choice := ""
+	fmt.Scanln(&choice)
+	main()
+}
+
+func Initialisation() {
 	colors.Init()
 	menu.Clear()
 	menu.Write1("Hey you, yeah you, you're new in the guild right ? What's your name ? \n\n")
@@ -36,7 +81,7 @@ func main() {
 		menu.Write1("I like how you're trying to avoid dying but that's part of the game so please... die \n")
 		p1.Health_point = 1
 	}
-	//time.Sleep(3 * time.Second)
+	time.Sleep(3 * time.Second)
 	menu.Clear()
 	menu.Write1("You wake up, somehow not dead, in a strange forest and find a \n\n")
 	menu.Write1("1 - GreatSword (slow but very powerful) \n2 - LongSword (fast and strong) \n3 - DualBlade (very quick but weak) \n")
@@ -73,7 +118,7 @@ func main() {
 	p1.Armor.Legs = "Leather"
 	p1.Max_health_point = player.HpUpdate(p1.Armor, p1)
 	player.SkillDetection(&p1.Weapon)
-	//time.Sleep(3 * time.Second)
+	time.Sleep(3 * time.Second)
 	menu.MainMenu(&p1)
 }
 
