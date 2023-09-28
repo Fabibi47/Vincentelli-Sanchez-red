@@ -60,7 +60,8 @@ func MainMenu(p *player.Character) {
 				MainMenu(p)
 			}
 		default:
-			navigating = true
+			navigating = false
+			MainMenu(p)
 		}
 	}
 }
