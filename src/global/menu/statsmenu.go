@@ -7,7 +7,10 @@ import (
 
 func Stats(p *player.Character) {
 	stats := []string{
-		"Character stats : \n\n\n",
+		"" + "\033[36m" + " .----..---.  .-" + "\033[34m" + "-.  .---.  .----.   " + "\033[0m" + "",
+		"" + "\033[36m" + "{ {__ {_   _}/ {} \\{_   _}{ " + "\033[34m" + "{__      _/" + "\033[0m" + "",
+		"" + "\033[36m" + ".-._} } | | /  /" + "\033[34m" + "\\  \\ | |  .-._} }   " + "\033[0m" + "",
+		"" + "\033[36m" + "`----'  `-' `-'  `-' `" + "\033[34m" + "-'  `----'     _/   \n\n" + "\033[0m" + "",
 		"	Name : " + p.Name + " | Lvl " + strconv.Itoa(p.Level) + " | Health : " + strconv.Itoa(p.Health_point) + "/" + strconv.Itoa(p.Max_health_point) + " | Zennys : " + strconv.Itoa(p.Money) + "\n\n",
 		"	Armor :\n",
 		"	   Helm " + p.Armor.Helm,
