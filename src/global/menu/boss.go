@@ -91,9 +91,19 @@ func BossBattle(p *player.Character, b *monsters.Boss) {
 			if chance%5 == 0 {
 				*playerHP -= b.Attacks[1].Use(*b)
 				Write(b.Name + " used " + b.Attacks[1].Name)
+				if b.Attacks[1].Effect != "None" && b.Attacks[1].Effect != "Armor" {
+					p.Affliction = b.Attacks[1].Effect
+				}
 			} else {
 				*playerHP -= b.Attacks[0].Use(*b)
 				Write(b.Name + " attacked !")
+				if b.Attacks[0].Effect != "None" && b.Attacks[0].Effect != "Armor" {
+					p.Affliction = b.Attacks[0].Effect
+				}
+			}
+			if p.Affliction == "Burn" {
+				Write("You're burning")
+				*playerHP -= int(float32(p.Max_health_point) * 0.2)
 			}
 			time.Sleep(time.Second)
 			if *playerHP <= 0 {
