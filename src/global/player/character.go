@@ -11,7 +11,6 @@ type Character struct {
 	Inventory        map[Item]int
 	Armor            Armor
 	Weapon           Weapon
-	Stamina          int
 	Stamina_max      int
 	Stack            int
 	Quest            int
