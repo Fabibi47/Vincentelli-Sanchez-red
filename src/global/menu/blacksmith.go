@@ -231,7 +231,7 @@ func BuyUpgradeWeapon(p *player.Character, part *string, equipment *string, mate
 	p.Money -= material.Price * 2
 	p.Weapon.Type = *equipment
 	Write("Thanks brother")
-	time.Sleep(3 * time.Second)
+	time.Sleep(time.Second)
 	p.Max_health_point = player.HpUpdate(p.Armor, *p)
 	player.SkillDetection(&p.Weapon)
 	Blacksmith(p)
@@ -351,7 +351,7 @@ func BuyUpgrade(p *player.Character, part *string, equipment *string, material p
 			p.Money -= material.Price * 2
 			*part = *equipment
 			Write("Thanks brother")
-			time.Sleep(3 * time.Second)
+			time.Sleep(time.Second)
 			p.Max_health_point = player.HpUpdate(p.Armor, *p)
 			player.SkillDetection(&p.Weapon)
 			Blacksmith(p)

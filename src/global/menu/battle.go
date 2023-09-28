@@ -156,7 +156,7 @@ func Hunt(p *player.Character, monster monsters.Monster, zone string) {
 			time.Sleep(1 * time.Second)
 			battleMenu := []string{
 				"Battle : \n\n\n",
-				" ↱ " + monster.Name + "   " + strconv.Itoa(monsterHP) + "/" + strconv.Itoa(monster.PV) + "\n\n",
+				" ↱ " + monster.Name + "   " + "\033[31m" + strconv.Itoa(monsterHP) + "/" + strconv.Itoa(monster.PV) + "\033[0m" + "\n\n",
 				"   " + p.Name + "   " + "\033[31m" + strconv.Itoa(*playerHP) + "/" + strconv.Itoa(p.Max_health_point) + "\033[0m" + "   " + "\033[36m" + strconv.Itoa(stamina) + "/" + strconv.Itoa(p.Stamina_max) + "\033[0m"}
 			Clear()
 			DisplayMenu(battleMenu)
