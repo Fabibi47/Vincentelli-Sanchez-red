@@ -249,7 +249,7 @@ func Armor(p *player.Character) {
 	}
 	DisplayMenu(blacksmith)
 	Write("Armors : \n\n")
-	Write("	1 - Great Jagras	\n	2 - Barroth	\n	3 - Rathalos	\n	4 - Nergigante	\n	5 - Xeno'jiiva \n\n	0 - Back\n\n")
+	Write("	1 - Great Jagras (25hp per part)	\n	2 - Barroth (50hp per part)	\n	3 - Rathalos (100hp per part)	\n	4 - Nergigante (250hp per part)	\n	5 - Xeno'jiiva (500hp per part) \n\n	0 - Back\n\n")
 	name := ""
 	material := player.Iron_ore
 	cost := 0

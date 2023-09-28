@@ -33,15 +33,15 @@ func HpDetection(part string) int {
 	if part == "Leather" {
 		return 0
 	} else if part == "Great Jagras" {
-		return 5
+		return 25
 	} else if part == "Barroth" {
-		return 10
-	} else if part == "Rathalos" {
-		return 20
-	} else if part == "Nergigante" {
 		return 50
-	} else {
+	} else if part == "Rathalos" {
 		return 100
+	} else if part == "Nergigante" {
+		return 250
+	} else {
+		return 500
 	}
 }
 
