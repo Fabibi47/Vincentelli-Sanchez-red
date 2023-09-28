@@ -46,7 +46,7 @@ func BossBattle(p *player.Character, b *monsters.Boss) {
 					Write("Skill used !")
 					time.Sleep(time.Second)
 					if bossHP <= 0 {
-						BossVictory(*p, *b)
+						BossVictory(p, *b)
 						hunting = false
 					}
 				case "2":
@@ -54,7 +54,7 @@ func BossBattle(p *player.Character, b *monsters.Boss) {
 					Write("Skill used !")
 					time.Sleep(time.Second)
 					if bossHP <= 0 {
-						BossVictory(*p, *b)
+						BossVictory(p, *b)
 						hunting = false
 					}
 				case "3":
@@ -62,7 +62,7 @@ func BossBattle(p *player.Character, b *monsters.Boss) {
 					Write("Skill used !")
 					time.Sleep(time.Second)
 					if bossHP <= 0 {
-						BossVictory(*p, *b)
+						BossVictory(p, *b)
 						hunting = false
 					}
 				}
@@ -104,7 +104,7 @@ func BossBattle(p *player.Character, b *monsters.Boss) {
 	MainMenu(p)
 }
 
-func BossVictory(p player.Character, b monsters.Boss) {
+func BossVictory(p *player.Character, b monsters.Boss) {
 	Clear()
 	frame1 := []string{"\033[33m" +
 		"┓┏       ┏┓       ┓      ┓",
@@ -113,16 +113,27 @@ func BossVictory(p player.Character, b monsters.Boss) {
 		"\033[0m",
 	}
 	DisplayMenu(frame1)
-	Write("\n\n\nYou earned a " + b.Drop.Name + ", " + strconv.Itoa(b.Gold) + " znnys and " + strconv.Itoa(b.Exp) + " experience!\n\n")
+	Write("\n\n\nYou earned a " + b.Drop.Name + ", " + strconv.Itoa(b.Gold) + " zennys and " + strconv.Itoa(b.Exp) + " experience!\n\n")
 	p.Money += b.Gold
 	p.Exp += b.Exp
-	player.LevelUpdate(&p)
+	player.LevelUpdate(p)
 	time.Sleep(1 * time.Second)
 	Write("\n\n\nClick on anything to go back to main menu.")
 	action := ""
 	fmt.Scanln(&action)
 	switch action {
 	default:
-		MainMenu(&p)
+		if b.Name == "Great Jagras" && p.Quest == 0 {
+			p.Quest = 1
+		} else if b.Name == "Barroth" && p.Quest == 1 {
+			p.Quest = 2
+		} else if b.Name == "Rathalos" && p.Quest == 2 {
+			p.Quest = 3
+		} else if b.Name == "Nergigante" && p.Quest == 3 {
+			p.Quest = 4
+		} else if b.Name == "Xeno'Jiiva" && p.Quest == 4 {
+			p.Quest = 5
+		}
+		MainMenu(p)
 	}
 }

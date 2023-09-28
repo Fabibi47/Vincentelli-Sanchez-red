@@ -14,6 +14,7 @@ type Character struct {
 	Stamina          int
 	Stamina_max      int
 	Stack            int
+	Quest            int
 }
 
 func LevelUpdate(p *Character) {
