@@ -26,7 +26,9 @@ func MainMenu(p *player.Character) {
 		case "4":
 			navigating = false
 			Blacksmith(p)
-
+		case "5":
+			navigating = false
+			ChoseZone(p)
 		case "7":
 			Write("Are you sure ? \n \n 1 - Yes, leave\n 2 - No, continue\n")
 			scanner.Scan()
