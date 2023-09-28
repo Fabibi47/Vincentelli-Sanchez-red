@@ -10,6 +10,15 @@ import (
 
 func Blacksmith(p *player.Character) {
 	Clear()
+	blacksmith := []string{
+		"\033[95m" + "__________.__                 __                   .__  __  .__          ",
+		"\\______   \\  | _____    ____ |  | __  ______ _____ |__|/  |_|  |__    /\\ ",
+		" |    |  _/  | \\__  \\ _/ ___\\|  |/ / /  ___//     \\|  \\   __\\  |  \\   \\/ ",
+		" |    |   \\  |__/ __ \\\\  \\___|    <  \\___ \\|  Y Y  \\  ||  | |   Y  \\  /\\ ",
+		" |______  /____(____  /\\___  >__|_ \\/____  >__|_|  /__||__| |___|  /  \\/ ",
+		"        \\/          \\/     \\/     \\/     \\/      \\/              \\/     \n\n" + "\033[0m",
+	}
+	DisplayMenu(blacksmith)
 	Write("Welcome! Do you want to forge something ? \n\n\n")
 	Write("1 - Weapon \n\n2 - Armor \n\n0 - Leave\n\n")
 	selection := ""
