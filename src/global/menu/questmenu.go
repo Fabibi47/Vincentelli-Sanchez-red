@@ -20,7 +20,8 @@ func QuestMenu(p player.Character) {
 	}
 	if p.Quest == 5 {
 		questSlide = append(questSlide, "By the way, we just received a new Quest!")
-		questSlide = append(questSlide, "Seems really hard but I feel like you can do it.")
+		questSlide = append(questSlide, "Seems really hard but I feel like you can do it.\n\n")
+		questSlide = append(questSlide, "6 - Kill the Alatreon\n")
 	}
 	Clear()
 	DisplayMenu(questSlide)

@@ -115,7 +115,10 @@ func BossVictory(p *player.Character, b monsters.Boss) {
 	}
 	DisplayMenu(frame1)
 	Write("\n\n\nYou earned a " + b.Drop.Name + ", " + strconv.Itoa(b.Gold) + " zennys and " + strconv.Itoa(b.Exp) + " experience!\n\n")
-	p.Inventory[b.Drop] += 1
+	chance := rand.Int31n(100)
+	if chance <= int32(b.Drop_chances*100.0) {
+		p.Inventory[b.Drop] += 1
+	}
 	p.Money += b.Gold
 	p.Exp += b.Exp
 	player.LevelUpdate(p)
