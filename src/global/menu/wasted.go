@@ -157,7 +157,7 @@ func Wasted(p *player.Character) {
 	}
 	DisplayMenu(frame10)
 	time.Sleep(250 * time.Millisecond)
-	Write("\n\n\nClick on anything to continue...")
+	Write("\n\n\nPress enter to continue...")
 	anything := ""
 	fmt.Scanln(&anything)
 	p.Health_point = int(p.Max_health_point / 2)

@@ -14,7 +14,7 @@ func MenuInventory(p *player.Character) {
 		"" + "\033[33m" + "| || ' || | |/ ._>| ' " + "\033[0m" + "| | | / . \\| '_>| | |  _ ",
 		"" + "\033[33m" + "|_||_|_||__/ \\___.|_|_| |_| \\" + "\033[0m" + "___/|_|  `_. | <_>",
 		"" + "\033[33m" + "                                      <___'  " + "\033[0m" + "  ",
-		"\n\n\n"}
+		"\n\n"}
 	for object := range p.Inventory {
 		inventorySlice = append(inventorySlice, "	"+object.Name+" x"+strconv.Itoa(p.Inventory[object]))
 	}
@@ -42,11 +42,11 @@ func Navigate(p *player.Character) {
 		"" + "\033[33m" + "| || ' || | |/ ._>| ' " + "\033[0m" + "| | | / . \\| '_>| | |  _ ",
 		"" + "\033[33m" + "|_||_|_||__/ \\___.|_|_| |_| \\" + "\033[0m" + "___/|_|  `_. | <_>",
 		"" + "\033[33m" + "                                      <___'  " + "\033[0m" + "  ",
-		"\n\n\n",
+		"\n\n",
 		"Navigating \n\n",
 	}
 	for i, o := range inventory {
-		navigateMenu = append(navigateMenu, strconv.Itoa(i+1)+" - "+o.Name)
+		navigateMenu = append(navigateMenu, "	"+strconv.Itoa(i+1)+" - "+o.Name)
 	}
 	Clear()
 	DisplayMenu(navigateMenu)
@@ -68,11 +68,7 @@ func DisplayObject(o player.Item, p *player.Character) {
 		"" + "\033[33m" + "|_||_|_||__/ \\___.|_|_| |_| \\" + "\033[0m" + "___/|_|  `_. | <_>",
 		"" + "\033[33m" + "                                      <___'  " + "\033[0m" + "  ",
 		"\n\n\n"}
-	display = append(display, o.Name+"\n\n"+"   "+o.Descritpion)
-	if o.Usable {
-		display = append(display, "1 - Use")
-	}
-	display = append(display, "0 - Back")
+	display = append(display, o.Name+"\n\n"+"   "+o.Descritpion+"\n")
 	Clear()
 	DisplayMenu(display)
 	action := ""

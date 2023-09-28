@@ -37,6 +37,15 @@ func Blacksmith(p *player.Character) {
 
 func Weapon(p *player.Character) {
 	Clear()
+	blacksmith := []string{
+		"\033[95m" + "__________.__                 __                   .__  __  .__          ",
+		"\\______   \\  | _____    ____ |  | __  ______ _____ |__|/  |_|  |__    /\\ ",
+		" |    |  _/  | \\__  \\ _/ ___\\|  |/ / /  ___//     \\|  \\   __\\  |  \\   \\/ ",
+		" |    |   \\  |__/ __ \\\\  \\___|    <  \\___ \\|  Y Y  \\  ||  | |   Y  \\  /\\ ",
+		" |______  /____(____  /\\___  >__|_ \\/____  >__|_|  /__||__| |___|  /  \\/ ",
+		"        \\/          \\/     \\/     \\/     \\/      \\/              \\/     \n\n" + "\033[0m",
+	}
+	DisplayMenu(blacksmith)
 	Write("Weapons : \n\n")
 	Write("	1 - Buy Weapons \n	2 - Upgrade Weapons \n\n0 - Back\n\n")
 	choice := ""
@@ -44,7 +53,16 @@ func Weapon(p *player.Character) {
 	Clear()
 	switch choice {
 	case "1":
-		Write("	1 - GreatSword (x1 Iron Ore | x50 Zennys) \n	2 - LongSword (x1 Iron Ore | x50 Zennys) \n	3 - DualBlades (x1 Iron Ore | x50 Zennys) \n\n0 - Back\n\n")
+		blacksmith := []string{
+			"\033[95m" + "__________.__                 __                   .__  __  .__          ",
+			"\\______   \\  | _____    ____ |  | __  ______ _____ |__|/  |_|  |__    /\\ ",
+			" |    |  _/  | \\__  \\ _/ ___\\|  |/ / /  ___//     \\|  \\   __\\  |  \\   \\/ ",
+			" |    |   \\  |__/ __ \\\\  \\___|    <  \\___ \\|  Y Y  \\  ||  | |   Y  \\  /\\ ",
+			" |______  /____(____  /\\___  >__|_ \\/____  >__|_|  /__||__| |___|  /  \\/ ",
+			"        \\/          \\/     \\/     \\/     \\/      \\/              \\/     \n\n" + "\033[0m",
+		}
+		DisplayMenu(blacksmith)
+		Write("Weapon : \n\n	1 - GreatSword (x1 Iron Ore | x50 Zennys) \n	2 - LongSword (x1 Iron Ore | x50 Zennys) \n	3 - DualBlades (x1 Iron Ore | x50 Zennys) \n\n0 - Back\n\n")
 		tobuy := ""
 		fmt.Scanln(&choice)
 		switch choice {
@@ -92,6 +110,15 @@ func Weapon(p *player.Character) {
 
 func Upgrade(p *player.Character) {
 	Clear()
+	blacksmith := []string{
+		"\033[95m" + "__________.__                 __                   .__  __  .__          ",
+		"\\______   \\  | _____    ____ |  | __  ______ _____ |__|/  |_|  |__    /\\ ",
+		" |    |  _/  | \\__  \\ _/ ___\\|  |/ / /  ___//     \\|  \\   __\\  |  \\   \\/ ",
+		" |    |   \\  |__/ __ \\\\  \\___|    <  \\___ \\|  Y Y  \\  ||  | |   Y  \\  /\\ ",
+		" |______  /____(____  /\\___  >__|_ \\/____  >__|_|  /__||__| |___|  /  \\/ ",
+		"        \\/          \\/     \\/     \\/     \\/      \\/              \\/     \n\n" + "\033[0m",
+	}
+	DisplayMenu(blacksmith)
 	if p.Weapon.Level == 1 && Ihave(p, player.Iron_ore, 1) && p.Money >= 100 {
 		Write("Do you want to spend 1 Iron Ore and 100 zennys to upgrade your weapon ?\n\n	1 - Yes\n	2 - No")
 		choice := ""
@@ -190,6 +217,16 @@ func Upgrade(p *player.Character) {
 }
 
 func BuyUpgradeWeapon(p *player.Character, part *string, equipment *string, material player.Item, amount int) {
+	Clear()
+	blacksmith := []string{
+		"\033[95m" + "__________.__                 __                   .__  __  .__          ",
+		"\\______   \\  | _____    ____ |  | __  ______ _____ |__|/  |_|  |__    /\\ ",
+		" |    |  _/  | \\__  \\ _/ ___\\|  |/ / /  ___//     \\|  \\   __\\  |  \\   \\/ ",
+		" |    |   \\  |__/ __ \\\\  \\___|    <  \\___ \\|  Y Y  \\  ||  | |   Y  \\  /\\ ",
+		" |______  /____(____  /\\___  >__|_ \\/____  >__|_|  /__||__| |___|  /  \\/ ",
+		"        \\/          \\/     \\/     \\/     \\/      \\/              \\/     \n\n" + "\033[0m",
+	}
+	DisplayMenu(blacksmith)
 	p.Inventory[material] -= amount
 	p.Money -= material.Price * 2
 	p.Weapon.Type = *equipment
@@ -202,33 +239,42 @@ func BuyUpgradeWeapon(p *player.Character, part *string, equipment *string, mate
 
 func Armor(p *player.Character) {
 	Clear()
+	blacksmith := []string{
+		"\033[95m" + "__________.__                 __                   .__  __  .__          ",
+		"\\______   \\  | _____    ____ |  | __  ______ _____ |__|/  |_|  |__    /\\ ",
+		" |    |  _/  | \\__  \\ _/ ___\\|  |/ / /  ___//     \\|  \\   __\\  |  \\   \\/ ",
+		" |    |   \\  |__/ __ \\\\  \\___|    <  \\___ \\|  Y Y  \\  ||  | |   Y  \\  /\\ ",
+		" |______  /____(____  /\\___  >__|_ \\/____  >__|_|  /__||__| |___|  /  \\/ ",
+		"        \\/          \\/     \\/     \\/     \\/      \\/              \\/     \n\n" + "\033[0m",
+	}
+	DisplayMenu(blacksmith)
 	Write("Armors : \n\n")
 	Write("	1 - Great Jagras	\n	2 - Barroth	\n	3 - Rathalos	\n	4 - Nergigante	\n	5 - Xeno'jiiva \n\n	0 - Back\n\n")
 	name := ""
-	material := ""
+	material := player.Iron_ore
 	cost := 0
 	choice := ""
 	fmt.Scanln(&choice)
 	switch choice {
 	case "1":
 		name = "Great Jagras"
-		material = "Great Jagras Scale"
+		material = player.Jagras_scale
 		cost = 100
 	case "2":
 		name = "Barroth"
-		material = "Barroth Scalp"
+		material = player.Barroth_scalp
 		cost = 200
 	case "3":
 		name = "Rathalos"
-		material = "Rathalos Cortex"
+		material = player.Rathalos_cortex
 		cost = 350
 	case "4":
 		name = "Nergigante"
-		material = "Nergigante Talon"
+		material = player.Nergigante_talon
 		cost = 500
 	case "5":
 		name = "Xeno'jiiva"
-		material = "Xeno'jiiva Gem"
+		material = player.Xeno_jiiva_gem
 		cost = 750
 	case "0":
 		Blacksmith(p)
@@ -236,16 +282,37 @@ func Armor(p *player.Character) {
 		Write("not an answer..")
 		Armor(p)
 	}
-	armors := []string{"1 - Helm " + name + " : " + material + " x1 & zenny x" + strconv.Itoa(cost),
-		"2 - Chest " + name + " : " + material + " x1 & zenny x" + strconv.Itoa(cost),
-		"3 - Arms " + name + " : " + material + " x1 & zenny x" + strconv.Itoa(cost),
-		"4 - Waist " + name + " : " + material + " x1 & zenny x" + strconv.Itoa(cost),
-		"5 - Legs " + name + " : " + material + " x1 & zenny x" + strconv.Itoa(cost) + "\n",
+	Clear()
+	blacksmith = []string{
+		"\033[95m" + "__________.__                 __                   .__  __  .__          ",
+		"\\______   \\  | _____    ____ |  | __  ______ _____ |__|/  |_|  |__    /\\ ",
+		" |    |  _/  | \\__  \\ _/ ___\\|  |/ / /  ___//     \\|  \\   __\\  |  \\   \\/ ",
+		" |    |   \\  |__/ __ \\\\  \\___|    <  \\___ \\|  Y Y  \\  ||  | |   Y  \\  /\\ ",
+		" |______  /____(____  /\\___  >__|_ \\/____  >__|_|  /__||__| |___|  /  \\/ ",
+		"        \\/          \\/     \\/     \\/     \\/      \\/              \\/     \n\n" + "\033[0m",
+	}
+	DisplayMenu(blacksmith)
+	armors := []string{
+		"1 - Helm " + name + " : " + material.Name + " x1 & zenny x" + strconv.Itoa(cost),
+		"2 - Chest " + name + " : " + material.Name + " x1 & zenny x" + strconv.Itoa(cost),
+		"3 - Arms " + name + " : " + material.Name + " x1 & zenny x" + strconv.Itoa(cost),
+		"4 - Waist " + name + " : " + material.Name + " x1 & zenny x" + strconv.Itoa(cost),
+		"5 - Legs " + name + " : " + material.Name + " x1 & zenny x" + strconv.Itoa(cost) + "\n",
 		"6 - Back",
 		"0 - Leave\n"}
 	DisplayMenu(armors)
 	fmt.Scanln(&choice)
 	switch choice {
+	case "1":
+		BuyUpgrade(p, &p.Armor.Helm, &name, material, 1)
+	case "2":
+		BuyUpgrade(p, &p.Armor.Chest, &name, material, 1)
+	case "3":
+		BuyUpgrade(p, &p.Armor.Arms, &name, material, 1)
+	case "4":
+		BuyUpgrade(p, &p.Armor.Waist, &name, material, 1)
+	case "5":
+		BuyUpgrade(p, &p.Armor.Legs, &name, material, 1)
 	case "0":
 		MainMenu(p)
 	case "6":
@@ -254,6 +321,16 @@ func Armor(p *player.Character) {
 }
 
 func BuyUpgrade(p *player.Character, part *string, equipment *string, material player.Item, amount int) {
+	Clear()
+	blacksmith := []string{
+		"\033[95m" + "__________.__                 __                   .__  __  .__          ",
+		"\\______   \\  | _____    ____ |  | __  ______ _____ |__|/  |_|  |__    /\\ ",
+		" |    |  _/  | \\__  \\ _/ ___\\|  |/ / /  ___//     \\|  \\   __\\  |  \\   \\/ ",
+		" |    |   \\  |__/ __ \\\\  \\___|    <  \\___ \\|  Y Y  \\  ||  | |   Y  \\  /\\ ",
+		" |______  /____(____  /\\___  >__|_ \\/____  >__|_|  /__||__| |___|  /  \\/ ",
+		"        \\/          \\/     \\/     \\/     \\/      \\/              \\/     \n\n" + "\033[0m",
+	}
+	DisplayMenu(blacksmith)
 	door := false
 	for item, amount := range p.Inventory {
 		if item == material && amount >= 1 && p.Money >= material.Price*2 {
