@@ -2,7 +2,7 @@ package menu
 
 import (
 	"fmt"
-	"player"
+	"red/global/player"
 )
 
 func MenuInventory(p *player.Character) {

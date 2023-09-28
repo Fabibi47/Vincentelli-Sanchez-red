@@ -1,7 +1,7 @@
 package menu
 
 import (
-	"player"
+	"red/global/player"
 )
 
 func Marchand(p *player.Character) {

@@ -3,8 +3,9 @@ package menu
 import (
 	"fmt"
 	"math/rand"
-	"monsters"
-	"player"
+	"red/global/monsters"
+	"red/global/player"
+
 	"strconv"
 	"time"
 )
@@ -12,14 +13,15 @@ import (
 func ChoseZone(player *player.Character) {
 	Clear()
 	ChoiceMenu := []string{
-		"In which area do you want to hunt ?\n\n",
-		"	1 - Forest\n",
+		"\033[91m" + "   __    ____  ____    __    ___     ",
+		"  /__\\  (  _ \\( ___)  /__\\  / __)  ()",
+		" /(__)\\  )   / )__)  /(__)\\ \\__ \\    ",
+		"(__)(__)(_)\\_)(____)(__)(__)(___/  ()\n\n",
+		"\033[90m" + "	1 - Forest\n",
 		"	2 - Desert\n",
 		"	3 - Swamps\n",
-		"	4 - Ancient's Land\n",
-		"	5 - UnderWorld\n",
-		"	6 - Sacred Lands\n\n",
-		"0 - Back"}
+		"	4 - Ancient's Land\n" + "\033[0m",
+		"0 - Back\n\n"}
 	DisplayMenu(ChoiceMenu)
 	action := ""
 	fmt.Scanln(&action)

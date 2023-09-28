@@ -2,7 +2,7 @@ package menu
 
 import (
 	"fmt"
-	"player"
+	"red/global/player"
 	"time"
 )
 

@@ -1,10 +1,10 @@
 package main
 
 import (
-	"colors"
 	"fmt"
-	"menu"
-	"player"
+	"red/global/colors"
+	"red/global/menu"
+	"red/global/player"
 	"time"
 )
 

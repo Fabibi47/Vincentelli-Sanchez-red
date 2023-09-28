@@ -2,7 +2,8 @@ package menu
 
 import (
 	"fmt"
-	"player"
+	"red/global/player"
+
 	"strconv"
 	"time"
 )
@@ -10,14 +11,14 @@ import (
 func Blacksmith(p *player.Character) {
 	Clear()
 	Write("Welcome! Do you want to forge something ? \n\n\n")
-	Write("1 - Weapon \n\n2 - Armor \n\n3 - Leave\n\n")
+	Write("1 - Weapon \n\n2 - Armor \n\n0 - Leave\n\n")
 	selection := ""
 	fmt.Scanln(&selection)
 	if selection == "1" {
 		Weapon(p)
 	} else if selection == "2" {
 		Armor(p)
-	} else if selection == "3" {
+	} else if selection == "0" {
 		MainMenu(p)
 	} else {
 		Write("This is not a valid answer..")
@@ -186,6 +187,7 @@ func BuyUpgradeWeapon(p *player.Character, part *string, equipment *string, mate
 	Write("Thanks brother")
 	time.Sleep(3 * time.Second)
 	p.Max_health_point = player.HpUpdate(p.Armor, *p)
+	player.SkillDetection(&p.Weapon)
 	Blacksmith(p)
 }
 
@@ -265,6 +267,7 @@ func BuyUpgrade(p *player.Character, part *string, equipment *string, material p
 			Write("Thanks brother")
 			time.Sleep(3 * time.Second)
 			p.Max_health_point = player.HpUpdate(p.Armor, *p)
+			player.SkillDetection(&p.Weapon)
 			Blacksmith(p)
 		}
 	}
