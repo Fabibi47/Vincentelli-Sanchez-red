@@ -44,7 +44,7 @@ func main() {
 	case "3":
 		os.Exit(0)
 	default:
-
+		main()
 	}
 }
 
@@ -83,7 +83,7 @@ func Initialisation() {
 		menu.Write1("I like how you're trying to avoid dying but that's part of the game so please... die \n")
 		p1.Health_point = 1
 	}
-	time.Sleep(3 * time.Second)
+	time.Sleep(2 * time.Second)
 	menu.Clear()
 	menu.Write1("You wake up, somehow not dead, in a strange forest and find a \n\n")
 	menu.Write1("1 - GreatSword (slow but very powerful) \n2 - LongSword (fast and strong) \n3 - DualBlade (very quick but weak) \n")
