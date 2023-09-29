@@ -20,6 +20,10 @@ func (i Item) Use(p *Character) {
 			if p.Inventory[i] <= 0 {
 				delete(p.Inventory, i)
 			}
+		} else if i.Effect == "Poison" {
+			p.Weapon.Effect = "Poison"
+		} else if i.Effect == "Antidote" {
+			p.Affliction = "None"
 		}
 	}
 }
@@ -28,6 +32,7 @@ var First_Aid Item = Item{"First Aid", "Heals 10 percents of you maximum health"
 var Potion Item = Item{"Potion", "Heals 25 percents of your maximum health.", 50, true, "Heal", 0.25}
 var Mega_Potion Item = Item{"Méga Potion", "Heals 50 percents of your maximum health.", 150, true, "Heal", 0.5}
 var Poison Item = Item{"Poison", "Apply on you weapon: gives the effect poison to an ennemy (-5 percents per tour).", 100, true, "Poison", -5.0}
+var Antidote Item = Item{"Antidote", "Heals you from your afflictions.", 100, true, "Antidote", 0.0}
 var Jagras_scale = Item{"Jagras Scale", "A scale belonging to a Great Jagras", 50, false, "material", 0.0}
 var Barroth_scalp = Item{"Barroth Scalp", "The scalp of a Barroth", 100, false, "material", 0.0}
 var Rathalos_cortex = Item{"Rathalos Cortex", "The cortex of a Rathalos", 175, false, "material", 0.0}

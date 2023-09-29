@@ -101,6 +101,9 @@ func Hunt(p *player.Character, monster monsters.Monster, zone string) {
 						Victory(p, monster, zone)
 						hunting = false
 					}
+					if p.Weapon.Effect == "Poison" {
+						monster.Affliction = "Poison"
+					}
 				case "2":
 					monsterHP -= p.Weapon.Skills[1].Use(p)
 					stamina -= p.Weapon.Skills[1].Cost
@@ -110,6 +113,9 @@ func Hunt(p *player.Character, monster monsters.Monster, zone string) {
 						Victory(p, monster, zone)
 						hunting = false
 					}
+					if p.Weapon.Effect == "Poison" {
+						monster.Affliction = "Poison"
+					}
 				case "3":
 					monsterHP -= p.Weapon.Skills[2].Use(p)
 					stamina -= p.Weapon.Skills[2].Cost
@@ -118,6 +124,9 @@ func Hunt(p *player.Character, monster monsters.Monster, zone string) {
 					if monsterHP <= 0 {
 						Victory(p, monster, zone)
 						hunting = false
+					}
+					if p.Weapon.Effect == "Poison" {
+						monster.Affliction = "Poison"
 					}
 				}
 			case "2":
@@ -168,6 +177,11 @@ func Hunt(p *player.Character, monster monsters.Monster, zone string) {
 				hunting = false
 				Wasted(p)
 			}
+		}
+		if monster.Affliction == "Poison" {
+			monsterHP -= int(float32(monster.PV) * 0.05)
+			Write("Monster poisonned !")
+			time.Sleep(time.Second)
 		}
 	}
 	MainMenu(p)

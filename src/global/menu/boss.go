@@ -57,6 +57,9 @@ func BossBattle(p *player.Character, b *monsters.Boss) {
 						VictoryBoss(p, *b)
 						hunting = false
 					}
+					if p.Weapon.Effect == "Poison" {
+						b.Affliction = "Poison"
+					}
 				case "2":
 					monsterHP -= p.Weapon.Skills[1].Use(p)
 					stamina -= p.Weapon.Skills[1].Cost
@@ -66,6 +69,9 @@ func BossBattle(p *player.Character, b *monsters.Boss) {
 						VictoryBoss(p, *b)
 						hunting = false
 					}
+					if p.Weapon.Effect == "Poison" {
+						b.Affliction = "Poison"
+					}
 				case "3":
 					monsterHP -= p.Weapon.Skills[2].Use(p)
 					stamina -= p.Weapon.Skills[2].Cost
@@ -74,6 +80,9 @@ func BossBattle(p *player.Character, b *monsters.Boss) {
 					if monsterHP <= 0 {
 						VictoryBoss(p, *b)
 						hunting = false
+					}
+					if p.Weapon.Effect == "Poison" {
+						b.Affliction = "Poison"
 					}
 				}
 			case "2":
@@ -116,6 +125,14 @@ func BossBattle(p *player.Character, b *monsters.Boss) {
 				"   " + p.Name + "   " + "\033[31m" + strconv.Itoa(*playerHP) + "/" + strconv.Itoa(p.Max_health_point) + "\033[0m" + "   " + "\033[36m" + strconv.Itoa(stamina) + "/" + strconv.Itoa(p.Stamina_max) + "\033[0m"}
 			Clear()
 			DisplayMenu(battleMenu)
+			chance := rand.Int31n(100)
+			if chance >= 80 {
+				b.Attacks[1].Use(*b)
+				Write(b.Name + " used " + b.Attacks[1].Name + " !")
+				if b.Attacks[1].Effect == "Poison" || b.Attacks[1].Effect == "Burn" {
+					p.Affliction = b.Attacks[1].Effect
+				}
+			}
 			fmt.Println("Monster's turn !")
 			*playerHP -= b.Damage
 			Write(b.Name + " attacked !")
@@ -124,6 +141,20 @@ func BossBattle(p *player.Character, b *monsters.Boss) {
 				hunting = false
 				Wasted(p)
 			}
+		}
+		if b.Affliction == "Poison" {
+			monsterHP -= int(float32(b.PV) * 0.05)
+			Write("Boss poisonned !")
+			time.Sleep(time.Second)
+		}
+		if p.Affliction == "Poison" || p.Affliction == "Burn" {
+			*playerHP -= int(float32(p.Max_health_point) * 0.05)
+			if p.Affliction == "Poison" {
+				Write("You're poisonned !")
+			} else {
+				Write("You're burning !")
+			}
+			time.Sleep(time.Second)
 		}
 	}
 	MainMenu(p)
@@ -160,7 +191,7 @@ func VictoryBoss(p *player.Character, b monsters.Boss) {
 			p.Quest += 1
 		} else if b.Name == "Nergigante" && p.Quest == 3 {
 			p.Quest += 1
-		} else if b.Name == "Xeno'Jiiva" && p.Quest == 4 {
+		} else if b.Name == "Xeno' Jiiva" && p.Quest == 4 {
 			p.Quest += 1
 		}
 		MainMenu(p)

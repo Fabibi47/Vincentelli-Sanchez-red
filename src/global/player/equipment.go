@@ -7,6 +7,7 @@ type Weapon struct {
 	Level  int
 	Type   string
 	Skills []Skill
+	Effect string
 }
 
 type Armor struct {
@@ -16,8 +17,6 @@ type Armor struct {
 	Waist string
 	Legs  string
 }
-
-var armor Armor
 
 func HpUpdate(armor Armor, player Character) int {
 	hpbonus := 0

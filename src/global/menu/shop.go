@@ -42,13 +42,14 @@ func Buy(p *player.Character) {
 		"1 - Potion: 50 Zennys",
 		"2 - Mega Potion: 150 Zennys",
 		"3 - Poison: 100 Zennys",
-		"4 - Backpack: 250 Zennys",
-		"5 - Iron Ore : 50 Zennys",
-		"6 - Malachite Ore : 100 Zennys",
-		"7 - Dragonite Ore : 200 Zennys",
-		"8 - Carbalite Ore : 500 Zennys",
-		"9 - Fucium Ore : 1000 Zennys",
-		"10 - Eltalite Ore : 2000 Zennys",
+		"4 - Antidote: 150 Zennys",
+		"5 - Backpack: 250 Zennys",
+		"6 - Iron Ore : 50 Zennys",
+		"7 - Malachite Ore : 100 Zennys",
+		"8 - Dragonite Ore : 200 Zennys",
+		"9 - Carbalite Ore : 500 Zennys",
+		"10 - Fucium Ore : 1000 Zennys",
+		"11 - Eltalite Ore : 2000 Zennys",
 	}
 	Clear()
 	shopping := true
@@ -92,6 +93,16 @@ func Buy(p *player.Character) {
 				Write("Sorry," + "\033[31m" + " Hunter" + "\033[0m" + ", but you don't have enough Zennys for this item.")
 			}
 		case "4":
+			if p.Money >= player.Antidote.Price && p.Inventory[player.Antidote] < p.Stack {
+				p.Inventory[player.Antidote]++
+				p.Money -= player.Antidote.Price
+				Write("Thank you, Hunter ! \nAnything else?")
+			} else if p.Inventory[player.Antidote] >= p.Stack {
+				Write("Your bag is full, you can't take anymore poisons.")
+			} else {
+				Write("Sorry," + "\033[31m" + " Hunter" + "\033[0m" + ", but you don't have enough Zennys for this item.")
+			}
+		case "5":
 			if p.Stack >= 10 {
 				Write("You already have this item.")
 			} else if p.Money >= 250 {
@@ -100,7 +111,7 @@ func Buy(p *player.Character) {
 			} else {
 				Write("Sorry," + "\033[31m" + " Hunter" + "\033[0m" + ", but you don't have enough Zennys for this item.")
 			}
-		case "5":
+		case "6":
 			if p.Money >= player.Iron_ore.Price {
 				p.Inventory[player.Iron_ore] += 1
 				p.Money -= player.Iron_ore.Price
@@ -108,7 +119,7 @@ func Buy(p *player.Character) {
 			} else {
 				Write("Sorry," + "\033[31m" + " Hunter" + "\033[0m" + ", but you don't have enough Zennys for this item.")
 			}
-		case "6":
+		case "7":
 			if p.Money >= player.Machalite_ore.Price {
 				p.Inventory[player.Machalite_ore] += 1
 				p.Money -= player.Machalite_ore.Price
@@ -116,7 +127,7 @@ func Buy(p *player.Character) {
 			} else {
 				Write("Sorry," + "\033[31m" + " Hunter" + "\033[0m" + ", but you don't have enough Zennys for this item.")
 			}
-		case "7":
+		case "8":
 			if p.Money >= player.Dragonite_ore.Price {
 				p.Inventory[player.Dragonite_ore] += 1
 				p.Money -= player.Dragonite_ore.Price
@@ -124,7 +135,7 @@ func Buy(p *player.Character) {
 			} else {
 				Write("Sorry," + "\033[31m" + " Hunter" + "\033[0m" + ", but you don't have enough Zennys for this item.")
 			}
-		case "8":
+		case "9":
 			if p.Money >= player.Carbalite_ore.Price {
 				p.Inventory[player.Carbalite_ore] += 1
 				p.Money -= player.Carbalite_ore.Price
@@ -132,7 +143,7 @@ func Buy(p *player.Character) {
 			} else {
 				Write("Sorry," + "\033[31m" + " Hunter" + "\033[0m" + ", but you don't have enough Zennys for this item.")
 			}
-		case "9":
+		case "10":
 			if p.Money >= player.Fucium_ore.Price {
 				p.Inventory[player.Fucium_ore] += 1
 				p.Money -= player.Fucium_ore.Price
@@ -140,7 +151,7 @@ func Buy(p *player.Character) {
 			} else {
 				Write("Sorry," + "\033[31m" + " Hunter" + "\033[0m" + ", but you don't have enough Zennys for this item.")
 			}
-		case "10":
+		case "11":
 			if p.Money >= player.Eltalite_ore.Price {
 				p.Inventory[player.Eltalite_ore] += 1
 				p.Money -= player.Eltalite_ore.Price

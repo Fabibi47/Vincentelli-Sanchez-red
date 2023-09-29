@@ -6,6 +6,7 @@ import (
 	"red/global/colors"
 	"red/global/menu"
 	"red/global/player"
+	"time"
 )
 
 var p1 player.Character
@@ -82,7 +83,7 @@ func Initialisation() {
 		menu.Write1("I like how you're trying to avoid dying but that's part of the game so please... die \n")
 		p1.Health_point = 1
 	}
-	//time.Sleep(3 * time.Second)
+	time.Sleep(3 * time.Second)
 	menu.Clear()
 	menu.Write1("You wake up, somehow not dead, in a strange forest and find a \n\n")
 	menu.Write1("1 - GreatSword (slow but very powerful) \n2 - LongSword (fast and strong) \n3 - DualBlade (very quick but weak) \n")
@@ -121,7 +122,7 @@ func Initialisation() {
 	p1.Stamina_max = 100
 	p1.Quest = 0
 	player.SkillDetection(&p1.Weapon)
-	//time.Sleep(3 * time.Second)
+	time.Sleep(3 * time.Second)
 	menu.MainMenu(&p1)
 }
 
