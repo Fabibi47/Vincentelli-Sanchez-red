@@ -41,7 +41,7 @@ func main() {
 		Initialisation()
 	case "2":
 		Whoarethey()
-	case "3":
+	case "0":
 		os.Exit(0)
 	default:
 		main()
